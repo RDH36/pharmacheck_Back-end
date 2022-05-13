@@ -1,16 +1,4 @@
-package com.inclusiv.cdan3.pharmacheck.models; /**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
-
-/**
- * Licensee: 
- * License Type: Purchased
- */
+package com.inclusiv.cdan3.pharmacheck.models;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -20,7 +8,7 @@ public class TourDeGarde implements Serializable {
 	public TourDeGarde() {
 	}
 	
-	@Column(name="IdGarde", nullable=false, length=19)	
+	@Column(name="IdGarde", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="TOURDEGARDE_IDGARDE_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="TOURDEGARDE_IDGARDE_GENERATOR", strategy="native")	
@@ -34,7 +22,7 @@ public class TourDeGarde implements Serializable {
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateDeFin;
 	
-	@Column(name="IDPharmacie", nullable=false, length=19)	
+	@Column(name="IDPharmacie", nullable=false)	
 	private long iDPharmacie;
 	
 	@Column(name="PharmacieNonInscrit", nullable=true, length=255)	
@@ -42,7 +30,7 @@ public class TourDeGarde implements Serializable {
 	
 	@ManyToMany(targetEntity=Pharmacie.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinTable(name="Utilisateur_TourDeGarde", joinColumns={ @JoinColumn(name="TourDeGardeIdGarde") }, inverseJoinColumns={ @JoinColumn(name="UtilisateurIdUtilisateur") })	
+	@JoinTable(name="Pharmacie_TourDeGarde", joinColumns={ @JoinColumn(name="TourDeGardeIdGarde") }, inverseJoinColumns={ @JoinColumn(name="PharmacieIdPharmacie") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set pharmacie = new java.util.HashSet();
 	

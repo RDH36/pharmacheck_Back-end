@@ -1,33 +1,21 @@
-package com.inclusiv.cdan3.pharmacheck.models; /**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
-
-/**
- * Licensee: 
- * License Type: Purchased
- */
+package com.inclusiv.cdan3.pharmacheck.models;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Utilisateur")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Discriminator", discriminatorType=DiscriminatorType.STRING)
-@DiscriminatorValue("Utilisateur")
 public class Utilisateur implements Serializable {
 	public Utilisateur() {
 	}
 	
-	@Column(name="IdUtilisateur", nullable=false, length=19)	
+	@Column(name="IdUtilisateur", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="UTILISATEUR_IDUTILISATEUR_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="UTILISATEUR_IDUTILISATEUR_GENERATOR", strategy="native")	
 	private long idUtilisateur;
+	
+	@Column(name="StatutCompte", nullable=true, length=255)	
+	private String statutCompte;
 	
 	@Column(name="Nom", nullable=true, length=255)	
 	private String nom;
@@ -38,17 +26,14 @@ public class Utilisateur implements Serializable {
 	@Column(name="Adresse", nullable=true, length=255)	
 	private String adresse;
 	
-	@Column(name="Email", nullable=true, length=255)	
-	private String email;
-	
 	@Column(name="Telephonne", nullable=true, length=255)	
 	private String telephonne;
 	
+	@Column(name="Email", nullable=true, length=255)	
+	private String email;
+	
 	@Column(name="MotDepasse", nullable=true, length=255)	
 	private String motDepasse;
-	
-	@Column(name="StatutCompte", nullable=true, length=255)	
-	private String statutCompte;
 	
 	@OneToMany(mappedBy="utilisateur", targetEntity=Facture.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	

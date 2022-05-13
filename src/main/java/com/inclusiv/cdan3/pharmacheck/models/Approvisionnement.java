@@ -1,4 +1,16 @@
-package  com.inclusiv.cdan3.pharmacheck.models;
+package com.inclusiv.cdan3.pharmacheck.models; /**
+ * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
+ * you generate persistence class.
+ * 
+ * Modifying its content may cause the program not work, or your work may lost.
+ */
+
+/**
+ * Licensee: 
+ * License Type: Purchased
+ */
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -8,7 +20,7 @@ public class Approvisionnement implements Serializable {
 	public Approvisionnement() {
 	}
 	
-	@Column(name="IdApprovisionnement", nullable=false, length=19)	
+	@Column(name="IdApprovisionnement", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="APPROVISIONNEMENT_IDAPPROVISIONNEMENT_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="APPROVISIONNEMENT_IDAPPROVISIONNEMENT_GENERATOR", strategy="native")	
@@ -21,20 +33,20 @@ public class Approvisionnement implements Serializable {
 	
 	@ManyToOne(targetEntity=Pharmacie.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="UtilisateurIdUtilisateur", referencedColumnName="IdUtilisateur", nullable=false) }, foreignKey=@ForeignKey(name="FKApprovisio305634"))	
+	@JoinColumns(value={ @JoinColumn(name="PharmacieIdPharmacie", referencedColumnName="IdPharmacie", nullable=false) }, foreignKey=@ForeignKey(name="FKApprovisio448984"))	
 	private Pharmacie pharmacie;
 	
 	@Column(name="DateDApprovisionnement", nullable=true)	
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateDApprovisionnement;
 	
-	@Column(name="IdPharmacie", nullable=false, length=19)	
+	@Column(name="IdPharmacie", nullable=false)	
 	private long idPharmacie;
 	
-	@Column(name="IdProduit", nullable=false, length=19)	
+	@Column(name="IdProduit", nullable=false)	
 	private long idProduit;
 	
-	@Column(name="PrixDAchat", nullable=false, length=10)	
+	@Column(name="PrixDAchat", nullable=false)	
 	private double prixDAchat;
 	
 	@Column(name="QuantiteEntrant", nullable=false, length=10)	

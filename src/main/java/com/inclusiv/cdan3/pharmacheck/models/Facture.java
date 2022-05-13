@@ -1,4 +1,4 @@
-package  com.inclusiv.cdan3.pharmacheck.models;
+package com.inclusiv.cdan3.pharmacheck.models;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -8,7 +8,7 @@ public class Facture implements Serializable {
 	public Facture() {
 	}
 	
-	@Column(name="IdFacture", nullable=false, length=19)	
+	@Column(name="IdFacture", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="FACTURE_IDFACTURE_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="FACTURE_IDFACTURE_GENERATOR", strategy="native")	
@@ -23,16 +23,16 @@ public class Facture implements Serializable {
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateCommande;
 	
-	@Column(name="EtatPaiement", nullable=true, length=255)	
-	private String etatPaiement;
-	
-	@Column(name="IdStock", nullable=false, length=19)	
+	@Column(name="IdStock", nullable=false)	
 	private long idStock;
 	
 	@Column(name="QuantiteProduit", nullable=false, length=10)	
 	private int quantiteProduit;
 	
-	@Column(name="MontantFacture", nullable=false, length=10)	
+	@Column(name="EtatPaiement", nullable=true, length=255)	
+	private String etatPaiement;
+	
+	@Column(name="MontantFacture", nullable=false)	
 	private double montantFacture;
 	
 	@Column(name="IdUtilisateur", nullable=false)	

@@ -1,16 +1,4 @@
-package com.inclusiv.cdan3.pharmacheck.models; /**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
-
-/**
- * Licensee: 
- * License Type: Purchased
- */
+package com.inclusiv.cdan3.pharmacheck.models;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -20,7 +8,7 @@ public class Stock implements Serializable {
 	public Stock() {
 	}
 	
-	@Column(name="IdStock", nullable=false, length=19)	
+	@Column(name="IdStock", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="STOCK_IDSTOCK_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="STOCK_IDSTOCK_GENERATOR", strategy="native")	
@@ -33,19 +21,19 @@ public class Stock implements Serializable {
 	
 	@ManyToOne(targetEntity=Pharmacie.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="UtilisateurIdUtilisateur", referencedColumnName="IdUtilisateur", nullable=false) }, foreignKey=@ForeignKey(name="FKStock185918"))	
+	@JoinColumns(value={ @JoinColumn(name="PharmacieIdPharmacie", referencedColumnName="IdPharmacie", nullable=false) }, foreignKey=@ForeignKey(name="FKStock329268"))	
 	private Pharmacie pharmacie;
 	
-	@Column(name="IdProduit", nullable=false, length=19)	
+	@Column(name="IdProduit", nullable=false)	
 	private long idProduit;
 	
-	@Column(name="IdPharmacie", nullable=false, length=19)	
+	@Column(name="IdPharmacie", nullable=false)	
 	private long idPharmacie;
 	
 	@Column(name="QuantitéDisponible", nullable=false, length=10)	
 	private int quantitéDisponible;
 	
-	@Column(name="PrixDeVente", nullable=false, length=10)	
+	@Column(name="PrixDeVente", nullable=false)	
 	private double prixDeVente;
 	
 	@ManyToMany(targetEntity=Facture.class)	
