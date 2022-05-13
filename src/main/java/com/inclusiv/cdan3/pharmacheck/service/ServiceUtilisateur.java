@@ -13,15 +13,15 @@ public class ServiceUtilisateur {
     @Autowired
     UtilisateurRepository utilisateurRepository;
 
-    public List<Utilisateur> list () {
+    public List<Utilisateur> listUtilisateur () {
         return  utilisateurRepository.findAll();
     }
 
-    public Utilisateur save (Utilisateur user) {
+    public Utilisateur saveUtilisateur (Utilisateur user) {
         return utilisateurRepository.save(user);
     }
 
-    public void delete(long id) {
+    public void deleteUtilisateurByID(long id) {
         utilisateurRepository.deleteById(id);
     }
 }

@@ -20,17 +20,17 @@ public class UtilisateurController {
 
     @GetMapping("/list")
     public List<Utilisateur> list() {
-        return  serviceUtilisateur.list();
+        return  serviceUtilisateur.listUtilisateur();
     }
 
     @PostMapping(path = "/add", consumes = "application/json")
     public Utilisateur create(@RequestBody Utilisateur newUser) {
-        Utilisateur user = serviceUtilisateur.save(newUser);
+        Utilisateur user = serviceUtilisateur.saveUtilisateur(newUser);
         return  user;
     }
 
     @GetMapping("/delete")
     public  void delete (@RequestParam(value = "idUtilisateur") long id) {
-        serviceUtilisateur.delete(id);
+        serviceUtilisateur.deleteUtilisateurByID(id);
     }
 }
