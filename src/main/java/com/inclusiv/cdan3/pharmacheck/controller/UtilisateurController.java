@@ -13,7 +13,7 @@ import java.rmi.ServerException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/utlisateur")
+@RequestMapping("/utilisateur")
 public class UtilisateurController {
     @Autowired
     ServiceUtilisateur serviceUtilisateur;
