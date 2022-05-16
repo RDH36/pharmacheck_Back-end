@@ -43,14 +43,6 @@ public class Pharmacie implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set tourDeGarde = new java.util.HashSet();
-	
-
-	
-	@OneToMany(mappedBy="pharmacie", targetEntity=Approvisionnement.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set approvisionnement = new java.util.HashSet();
-	
 	private void setIdPharmacie(long value) {
 		this.idPharmacie = value;
 	}
@@ -134,19 +126,7 @@ public class Pharmacie implements Serializable {
 	public java.util.Set getTourDeGarde() {
 		return tourDeGarde;
 	}
-	
-	
 
-	
-	public void setApprovisionnement(java.util.Set value) {
-		this.approvisionnement = value;
-	}
-	
-	public java.util.Set getApprovisionnement() {
-		return approvisionnement;
-	}
-	
-	
 	public String toString() {
 		return String.valueOf(getIdPharmacie());
 	}

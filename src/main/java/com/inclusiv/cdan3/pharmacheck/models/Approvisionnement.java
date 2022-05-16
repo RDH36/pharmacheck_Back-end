@@ -14,17 +14,14 @@ public class Approvisionnement implements Serializable {
 	@GeneratedValue(generator="APPROVISIONNEMENT_IDAPPROVISIONNEMENT_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="APPROVISIONNEMENT_IDAPPROVISIONNEMENT_GENERATOR", strategy="native")	
 	private long idApprovisionnement;
-	
-	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="ProduitID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKApprovisio373337"))	
-	private Produit produit;
-	
-	@ManyToOne(targetEntity=Pharmacie.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="PharmacieID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKApprovisio729370"))	
-	private Pharmacie pharmacie;
-	
+
+	@Column(name="idPharmacie", nullable=false)
+	private long idPharmacie;
+
+	@Column(name="prixDeVente", nullable=false)
+	private double prixDeVente;
+	@Column(name="idProduit", nullable=false)
+	private long idProduit;
 	@Column(name="DateDApprovisionnement", nullable=true)	
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateDApprovisionnement;
@@ -82,23 +79,31 @@ public class Approvisionnement implements Serializable {
 	public java.util.Date getDateDePeremption() {
 		return dateDePeremption;
 	}
-	
-	public void setPharmacie(Pharmacie value) {
-		this.pharmacie = value;
+
+	public long getIdPharmacie() {
+		return idPharmacie;
 	}
-	
-	public Pharmacie getPharmacie() {
-		return pharmacie;
+
+	public void setIdPharmacie(long idPharmacie) {
+		this.idPharmacie = idPharmacie;
 	}
-	
-	public void setProduit(Produit value) {
-		this.produit = value;
+
+	public long getIdProduit() {
+		return idProduit;
 	}
-	
-	public Produit getProduit() {
-		return produit;
+
+	public void setIdProduit(long idProduit) {
+		this.idProduit = idProduit;
 	}
-	
+
+	public double getPrixDeVente() {
+		return prixDeVente;
+	}
+
+	public void setPrixDeVente(double prixDeVente) {
+		this.prixDeVente = prixDeVente;
+	}
+
 	public String toString() {
 		return String.valueOf(getIdApprovisionnement());
 	}

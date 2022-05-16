@@ -34,11 +34,6 @@ public class Produit implements Serializable {
 	@OneToMany(mappedBy="produit", targetEntity=Stock.class, cascade = CascadeType.PERSIST)
 	private java.util.Set<Produit> stock = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="produit", targetEntity=Approvisionnement.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set approvisionnements = new java.util.HashSet();
-	
 	private void setIdProduit(long value) {
 		this.idProduit = value;
 	}
@@ -98,16 +93,7 @@ public class Produit implements Serializable {
 	public java.util.Set getStock() {
 		return stock;
 	}
-	
-	
-	public void setApprovisionnements(java.util.Set value) {
-		this.approvisionnements = value;
-	}
-	
-	public java.util.Set getApprovisionnements() {
-		return approvisionnements;
-	}
-	
+
 	
 	public String toString() {
 		return String.valueOf(getIdProduit());
