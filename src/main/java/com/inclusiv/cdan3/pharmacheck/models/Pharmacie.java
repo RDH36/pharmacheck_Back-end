@@ -9,7 +9,7 @@ public class Pharmacie implements Serializable {
 	public Pharmacie() {
 	}
 	
-	@Column(name="IdPharmacie", nullable=false)	
+	@Column(name="ID", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="PHARMACIE_IDPHARMACIE_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="PHARMACIE_IDPHARMACIE_GENERATOR", strategy="native")	
@@ -44,10 +44,7 @@ public class Pharmacie implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set tourDeGarde = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="pharmacie", targetEntity=Stock.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set stock = new java.util.HashSet();
+
 	
 	@OneToMany(mappedBy="pharmacie", targetEntity=Approvisionnement.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -139,14 +136,7 @@ public class Pharmacie implements Serializable {
 	}
 	
 	
-	public void setStock(java.util.Set value) {
-		this.stock = value;
-	}
-	
-	public java.util.Set getStock() {
-		return stock;
-	}
-	
+
 	
 	public void setApprovisionnement(java.util.Set value) {
 		this.approvisionnement = value;

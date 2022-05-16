@@ -1,4 +1,5 @@
 package com.inclusiv.cdan3.pharmacheck.models;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -8,7 +9,7 @@ public class TourDeGarde implements Serializable {
 	public TourDeGarde() {
 	}
 	
-	@Column(name="IdGarde", nullable=false)	
+	@Column(name="ID", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="TOURDEGARDE_IDGARDE_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="TOURDEGARDE_IDGARDE_GENERATOR", strategy="native")	
@@ -22,15 +23,12 @@ public class TourDeGarde implements Serializable {
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateDeFin;
 	
-	@Column(name="IDPharmacie", nullable=false)	
-	private long iDPharmacie;
-	
 	@Column(name="PharmacieNonInscrit", nullable=true, length=255)	
 	private String pharmacieNonInscrit;
 	
 	@ManyToMany(targetEntity=Pharmacie.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinTable(name="Pharmacie_TourDeGarde", joinColumns={ @JoinColumn(name="TourDeGardeIdGarde") }, inverseJoinColumns={ @JoinColumn(name="PharmacieIdPharmacie") })	
+	@JoinTable(name="Pharmacie_TourDeGarde", joinColumns={ @JoinColumn(name="TourDeGardeID") }, inverseJoinColumns={ @JoinColumn(name="PharmacieID") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set pharmacie = new java.util.HashSet();
 	
@@ -60,14 +58,6 @@ public class TourDeGarde implements Serializable {
 	
 	public java.util.Date getDateDeFin() {
 		return dateDeFin;
-	}
-	
-	public void setiDPharmacie(long value) {
-		this.iDPharmacie = value;
-	}
-	
-	public long getiDPharmacie() {
-		return iDPharmacie;
 	}
 	
 	public void setPharmacieNonInscrit(String value) {

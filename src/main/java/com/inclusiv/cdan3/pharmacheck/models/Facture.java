@@ -1,4 +1,5 @@
 package com.inclusiv.cdan3.pharmacheck.models;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -8,7 +9,7 @@ public class Facture implements Serializable {
 	public Facture() {
 	}
 	
-	@Column(name="IdFacture", nullable=false)	
+	@Column(name="ID", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="FACTURE_IDFACTURE_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="FACTURE_IDFACTURE_GENERATOR", strategy="native")	
@@ -16,15 +17,12 @@ public class Facture implements Serializable {
 	
 	@ManyToOne(targetEntity=Utilisateur.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="UtilisateurIdUtilisateur", referencedColumnName="IdUtilisateur", nullable=false) }, foreignKey=@ForeignKey(name="FKFacture626987"))	
+	@JoinColumns(value={ @JoinColumn(name="UtilisateurID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKFacture815327"))	
 	private Utilisateur utilisateur;
 	
 	@Column(name="DateCommande", nullable=true)	
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateCommande;
-	
-	@Column(name="IdStock", nullable=false)	
-	private long idStock;
 	
 	@Column(name="QuantiteProduit", nullable=false, length=10)	
 	private int quantiteProduit;
@@ -34,9 +32,6 @@ public class Facture implements Serializable {
 	
 	@Column(name="MontantFacture", nullable=false)	
 	private double montantFacture;
-	
-	@Column(name="IdUtilisateur", nullable=false)	
-	private long idUtilisateur;
 	
 	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -63,14 +58,6 @@ public class Facture implements Serializable {
 		return dateCommande;
 	}
 	
-	public void setIdStock(long value) {
-		this.idStock = value;
-	}
-	
-	public long getIdStock() {
-		return idStock;
-	}
-	
 	public void setQuantiteProduit(int value) {
 		this.quantiteProduit = value;
 	}
@@ -93,14 +80,6 @@ public class Facture implements Serializable {
 	
 	public double getMontantFacture() {
 		return montantFacture;
-	}
-	
-	public void setIdUtilisateur(long value) {
-		this.idUtilisateur = value;
-	}
-	
-	public long getIdUtilisateur() {
-		return idUtilisateur;
 	}
 	
 	public void setUtilisateur(Utilisateur value) {

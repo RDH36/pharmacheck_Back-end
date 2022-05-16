@@ -1,16 +1,7 @@
-package com.inclusiv.cdan3.pharmacheck.models; /**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
+package com.inclusiv.cdan3.pharmacheck.models;
 
-/**
- * Licensee: 
- * License Type: Purchased
- */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -20,7 +11,7 @@ public class Produit implements Serializable {
 	public Produit() {
 	}
 	
-	@Column(name="IdProduit", nullable=false)	
+	@Column(name="ID", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="PRODUIT_IDPRODUIT_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="PRODUIT_IDPRODUIT_GENERATOR", strategy="native")	
@@ -40,11 +31,8 @@ public class Produit implements Serializable {
 	
 	@Column(name="ClassePharmaceutique", nullable=true, length=255)	
 	private String classePharmaceutique;
-	
-	@OneToMany(mappedBy="produit", targetEntity=Stock.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set stock = new java.util.HashSet();
+	@OneToMany(mappedBy="produit", targetEntity=Stock.class, cascade = CascadeType.PERSIST)
+	private java.util.Set<Produit> stock = new java.util.HashSet();
 	
 	@OneToMany(mappedBy="produit", targetEntity=Approvisionnement.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	

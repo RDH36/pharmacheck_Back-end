@@ -1,4 +1,7 @@
 package com.inclusiv.cdan3.pharmacheck.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -7,89 +10,65 @@ import javax.persistence.*;
 public class Stock implements Serializable {
 	public Stock() {
 	}
-	
-	@Column(name="IdStock", nullable=false)	
-	@Id	
-	@GeneratedValue(generator="STOCK_IDSTOCK_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="STOCK_IDSTOCK_GENERATOR", strategy="native")	
+
+	@Column(name="ID", nullable=false)
+	@Id
+	@GeneratedValue
 	private long idStock;
-	
-	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="ProduitIdProduit", referencedColumnName="IdProduit", nullable=false) }, foreignKey=@ForeignKey(name="FKStock905428"))	
+	@JsonIgnore
+	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumns(value={ @JoinColumn(name="ProduitID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKStock253621"))
 	private Produit produit;
-	
-	@ManyToOne(targetEntity=Pharmacie.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="PharmacieIdPharmacie", referencedColumnName="IdPharmacie", nullable=false) }, foreignKey=@ForeignKey(name="FKStock329268"))	
+
+	@ManyToOne(targetEntity=Pharmacie.class, fetch=FetchType.LAZY)
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+	@JoinColumns(value={ @JoinColumn(name="PharmacieID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKStock609654"))
 	private Pharmacie pharmacie;
-	
-	@Column(name="IdProduit", nullable=false)	
-	private long idProduit;
-	
-	@Column(name="IdPharmacie", nullable=false)	
-	private long idPharmacie;
-	
-	@Column(name="QuantitéDisponible", nullable=false, length=10)	
-	private int quantitéDisponible;
-	
-	@Column(name="PrixDeVente", nullable=false)	
+
+	@Column(name="QuantiteDisponible", nullable=false, length=10)
+	private int quantiteDisponible;
+
+	@Column(name="PrixDeVente", nullable=false)
 	private double prixDeVente;
-	
-	@ManyToMany(targetEntity=Facture.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinTable(name="Facture_Stock", joinColumns={ @JoinColumn(name="StockIdStock") }, inverseJoinColumns={ @JoinColumn(name="FactureIdFacture") })	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+
+	@ManyToMany(targetEntity=Facture.class)
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
+	@JoinTable(name="Facture_Stock", joinColumns={ @JoinColumn(name="StockID") }, inverseJoinColumns={ @JoinColumn(name="FactureID") })
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
 	private java.util.Set facture = new java.util.HashSet();
-	
+
 	private void setIdStock(long value) {
 		this.idStock = value;
 	}
-	
+
 	public long getIdStock() {
 		return idStock;
 	}
-	
+
 	public long getORMID() {
 		return getIdStock();
 	}
-	
-	public void setIdProduit(long value) {
-		this.idProduit = value;
+
+	public void setQuantiteDisponible(int value) {
+		this.quantiteDisponible = value;
 	}
-	
-	public long getIdProduit() {
-		return idProduit;
+
+	public int getQuantiteDisponible() {
+		return quantiteDisponible;
 	}
-	
-	public void setIdPharmacie(long value) {
-		this.idPharmacie = value;
-	}
-	
-	public long getIdPharmacie() {
-		return idPharmacie;
-	}
-	
-	public void setQuantitéDisponible(int value) {
-		this.quantitéDisponible = value;
-	}
-	
-	public int getQuantitéDisponible() {
-		return quantitéDisponible;
-	}
-	
+
 	public void setPrixDeVente(double value) {
 		this.prixDeVente = value;
 	}
-	
+
 	public double getPrixDeVente() {
 		return prixDeVente;
 	}
-	
+
 	public void setPharmacie(Pharmacie value) {
 		this.pharmacie = value;
 	}
-	
+
 	public Pharmacie getPharmacie() {
 		return pharmacie;
 	}

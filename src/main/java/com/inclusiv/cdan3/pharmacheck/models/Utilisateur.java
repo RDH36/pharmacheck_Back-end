@@ -1,4 +1,5 @@
 package com.inclusiv.cdan3.pharmacheck.models;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -8,12 +9,15 @@ public class Utilisateur implements Serializable {
 	public Utilisateur() {
 	}
 	
-	@Column(name="IdUtilisateur", nullable=false)	
+	@Column(name="ID", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="UTILISATEUR_IDUTILISATEUR_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="UTILISATEUR_IDUTILISATEUR_GENERATOR", strategy="native")	
 	private long idUtilisateur;
-
+	
+	@Column(name="StatutCompte", nullable=true, length=255)	
+	private String statutCompte;
+	
 	@Column(name="Nom", nullable=true, length=255)	
 	private String nom;
 	
@@ -49,7 +53,13 @@ public class Utilisateur implements Serializable {
 		return getIdUtilisateur();
 	}
 	
-
+	public void setStatutCompte(String value) {
+		this.statutCompte = value;
+	}
+	
+	public String getStatutCompte() {
+		return statutCompte;
+	}
 	
 	public void setNom(String value) {
 		this.nom = value;
