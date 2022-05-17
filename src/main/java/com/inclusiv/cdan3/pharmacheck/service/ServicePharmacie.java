@@ -20,12 +20,20 @@ public class ServicePharmacie {
         return  pharmacieRepository.findAll();
     }
 
-    public Pharmacie savePharmacie (Pharmacie newPharmacie){
-        return pharmacieRepository.save(newPharmacie);
+
+    public Pharmacie getUserPharmacieByMail(String pharmacie){
+        return pharmacieRepository.getUserPharmacie(pharmacie);
     }
+
+    public void savePharmacieAuth(Pharmacie pharmacie){
+        pharmacieRepository.save(pharmacie);
+    }
+
 
     public void deletePharmacieById(long id){
         pharmacieRepository.deleteById(id);
     }
+
+
 
 }
