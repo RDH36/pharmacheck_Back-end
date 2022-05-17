@@ -9,6 +9,7 @@ import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,11 +29,6 @@ public class ServiceProduit {
 
 
     public Produit addProduit(Produit newProduit) {
-        Stock stock = new Stock();
-        Pharmacie pharmacie = pharmacieRepository.getById(12L);
-        stock.setProduit(newProduit);
-        stock.setPharmacie(pharmacie);
-        newProduit.getStock().add(stock);
         return  produitRepository.save(newProduit);
     }
 
