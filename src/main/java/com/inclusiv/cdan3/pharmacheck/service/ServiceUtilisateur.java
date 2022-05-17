@@ -16,8 +16,12 @@ public class ServiceUtilisateur {
         return  utilisateurRepository.findAll();
     }
 
-    public Utilisateur saveUtilisateur (Utilisateur user) {
-        return utilisateurRepository.save(user);
+    public Utilisateur getUserByMAIl (String user) {
+        return utilisateurRepository.getUserByMail(user);
+    }
+
+    public void saveUtilisateurWithAuth(Utilisateur user) {
+        utilisateurRepository.save(user);
     }
 
     public void deleteUtilisateurByID(long id) {

@@ -5,6 +5,7 @@ import com.inclusiv.cdan3.pharmacheck.service.ServiceUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,9 @@ public class UtilisateurController {
         return  serviceUtilisateur.listUtilisateur();
     }
 
-    @PostMapping(path = "/add", consumes = "application/json")
-    public Utilisateur create(@RequestBody Utilisateur newUser) {
-        Utilisateur user = serviceUtilisateur.saveUtilisateur(newUser);
-        return  user;
+    @GetMapping("/user")
+    public Utilisateur user (HttpSession session)  {
+        return  serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
     }
 
     @GetMapping("/delete")
