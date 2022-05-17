@@ -14,18 +14,21 @@ public class UtilisateurController {
     @Autowired
     ServiceUtilisateur serviceUtilisateur;
 
-    @GetMapping("/list")
+    @GetMapping("/listeInscrit")
     public List<Utilisateur> list() {
         return  serviceUtilisateur.listUtilisateur();
     }
 
     @GetMapping("/user")
     public Utilisateur user (HttpSession session)  {
-        return  serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
+        Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
+        session.setAttribute("ID_USER", utilisateur.getIdUtilisateur());
+        return  utilisateur;
     }
 
-    @GetMapping("/delete")
-    public  void delete (@RequestParam(value = "idUtilisateur") long id) {
-        serviceUtilisateur.deleteUtilisateurByID(id);
+    @DeleteMapping("/delete")
+    public  String delete (HttpSession session) {
+        serviceUtilisateur.deleteUtilisateurByID((Long) session.getAttribute("ID_USER"));
+        return "delete";
     }
 }
