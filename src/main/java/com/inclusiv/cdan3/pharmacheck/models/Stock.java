@@ -21,7 +21,6 @@ public class Stock implements Serializable {
 	private Produit produit;
 
 	@ManyToOne(targetEntity=Pharmacie.class, fetch=FetchType.LAZY)
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
 	@JoinColumns(value={ @JoinColumn(name="PharmacieID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKStock609654"))
 	private Pharmacie pharmacie;
 
