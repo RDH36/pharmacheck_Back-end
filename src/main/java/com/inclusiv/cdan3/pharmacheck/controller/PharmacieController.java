@@ -37,6 +37,7 @@ public class PharmacieController {
     @JsonIgnore
     @GetMapping("/liste")
     public List<Stock> stockList (@RequestParam(value = "ID") long id){
+        System.out.println(stockRepository.listestockpharmacie(id));
         return stockRepository.listestockpharmacie(id);
     }
 }

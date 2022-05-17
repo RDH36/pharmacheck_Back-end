@@ -44,6 +44,7 @@ public class Pharmacie implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set tourDeGarde = new java.util.HashSet();
 
+
 	private void setIdPharmacie(long value) {
 		this.idPharmacie = value;
 	}
@@ -131,5 +132,6 @@ public class Pharmacie implements Serializable {
 	public String toString() {
 		return String.valueOf(getIdPharmacie());
 	}
+
 
 }
