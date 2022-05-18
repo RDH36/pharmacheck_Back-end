@@ -19,12 +19,13 @@ public class PharmacieController {
     @Autowired
     StockRepository stockRepository;
 
+    //Renvoie la liste de toutes les pharmacies eenregistrées
     @GetMapping("/listPharmacie")
     public List<Pharmacie> list(){
         return servicePharmacie.listPharmacie();
     }
-    
 
+    //Session pharmacie
     @GetMapping("/pharmacie")
     public Pharmacie pharmacie(HttpSession session){
         Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) session.getAttribute("MAIL_PHARMACIE"));
@@ -32,6 +33,7 @@ public class PharmacieController {
         return pharmacie;
     }
 
+    //Efface pharmacie
     @GetMapping("/deletepharmacie")
     public String delete (HttpSession session ){
         servicePharmacie.deletePharmacieById((long) session.getAttribute("ID_PHARMACIE"));
