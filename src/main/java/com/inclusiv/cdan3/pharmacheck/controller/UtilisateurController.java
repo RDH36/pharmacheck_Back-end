@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
     @Autowired
@@ -17,13 +18,6 @@ public class UtilisateurController {
     @GetMapping("/listeInscrit")
     public List<Utilisateur> list() {
         return  serviceUtilisateur.listUtilisateur();
-    }
-
-    @GetMapping("/user")
-    public Utilisateur user (HttpSession session)  {
-        Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
-        session.setAttribute("ID_USER", utilisateur.getIdUtilisateur());
-        return  utilisateur;
     }
 
     @DeleteMapping("/delete")
