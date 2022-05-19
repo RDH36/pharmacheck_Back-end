@@ -10,7 +10,7 @@ import java.util.List;
 public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
 
     //Récupère pharmacie par mail
-    @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nif_pharamacie, nom_pharmacie, statit_pharmacie, telephonne FROM pharmacie WHERE email= :mail;", nativeQuery = true)
+    @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nif_pharmacie, nom_pharmacie, statit_pharmacie, telephonne FROM pharmacie WHERE email= :mail", nativeQuery = true)
     Pharmacie getUserPharmacie(@Param("mail") String mail);
 
     //Recupère liste pharmacie non valide
