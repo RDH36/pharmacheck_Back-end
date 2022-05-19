@@ -18,7 +18,7 @@ public class Pharmacie implements Serializable {
 	@Column(name="NomPharmacie", nullable=true, length=255)	
 	private String nomPharmacie;
 	
-	@Column(name="NifPharamacie", nullable=true, length=255)	
+	@Column(name="NifPharmacie", nullable=true, length=255)
 	private String nifPharamacie;
 	
 	@Column(name="StatitPharmacie", nullable=true, length=255)	
@@ -73,7 +73,7 @@ public class Pharmacie implements Serializable {
 		return nifPharamacie;
 	}
 	
-	public void setStatitPharmacie(String value) {
+	public void setStatitPharamacie(String value) {
 		this.statitPharmacie = value;
 	}
 	
