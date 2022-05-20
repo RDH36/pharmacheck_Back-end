@@ -54,7 +54,7 @@ public class AuthPharmacieController {
             pharmacie=new Pharmacie();
         }
         System.out.println(request.getSession().getAttribute("MAIL_PHARMACIE"));
-        System.out.println("ID_PHARMACIE");
+        System.out.println(request.getSession().getAttribute("ID_PHARMACIE"));
         return pharmacie;
     }
 }

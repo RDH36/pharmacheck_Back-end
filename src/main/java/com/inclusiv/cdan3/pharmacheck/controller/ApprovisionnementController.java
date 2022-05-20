@@ -24,7 +24,8 @@ public class ApprovisionnementController {
 
     @PostMapping(path = "/add", consumes = "application/json")
     public Approvisionnement addApprovisionement(@RequestBody Approvisionnement newAppr) {
-        stockRepository.updateStock(newAppr.getPrixDeVente(), newAppr.getQuantiteEntrant(), newAppr.getIdPharmacie(), newAppr.getIdProduit());
+        int qteStock = stockRepository.getQteStockProduit(newAppr.getIdPharmacie(), newAppr.getIdProduit());
+        stockRepository.updateStock(newAppr.getPrixDeVente(), (newAppr.getQuantiteEntrant() + qteStock), newAppr.getIdPharmacie(), newAppr.getIdProduit());
         return  serviceApprovisionnement.addApprovisionement(newAppr);
     }
 }

@@ -43,9 +43,9 @@ public class PharmacieController {
 
     @JsonIgnore
     @GetMapping("/listStock")
-    public List<Stock> stockList (@RequestParam(value = "ID") long id){
-        System.out.println(stockRepository.listestockpharmacie(id));
-        return stockRepository.listestockpharmacie(id);
+    public List<Stock> stockList (HttpSession session){
+        System.out.println(stockRepository.listestockpharmacie((Long) session.getAttribute("ID_PHARMACIE")));
+        return stockRepository.listestockpharmacie((Long) session.getAttribute("ID_PHARMACIE"));
     }
 
 
