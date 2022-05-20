@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/produits")
 public class ProduitController {
@@ -21,12 +22,15 @@ public class ProduitController {
 
     @GetMapping("/list")
     public List<Produit> produitList() {
+        Stock stk = new Stock();
+        stk.getProduit().getNomCommercial();
         return  serviceProduit.listeProduit();
     }
 
 
     @PostMapping(path = "/add", consumes = "application/json")
     public Produit addProduit (@RequestBody Produit newProduit) {
+
          return  serviceProduit.addProduit(newProduit);
     }
 

@@ -23,15 +23,50 @@ public class TourDeGarde implements Serializable {
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date dateDeFin;
 	
-	@Column(name="PharmacieNonInscrit", nullable=true, length=255)	
-	private String pharmacieNonInscrit;
-	
-	@ManyToMany(targetEntity=Pharmacie.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinTable(name="Pharmacie_TourDeGarde", joinColumns={ @JoinColumn(name="TourDeGardeID") }, inverseJoinColumns={ @JoinColumn(name="PharmacieID") })	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set pharmacie = new java.util.HashSet();
-	
+	@Column(name="nomPharmacieGarde", nullable=false, length=100)
+	private String nomPharmacieGarde;
+
+	@Column(name = "adressePharmacieGarde", nullable = false, length =100)
+	private String adressePharmacieGarde;
+
+	public String getNomPharmacieGarde() {
+		return nomPharmacieGarde;
+	}
+
+	public void setNomPharmacieGarde(String nomPharmacieGarde) {
+		this.nomPharmacieGarde = nomPharmacieGarde;
+	}
+
+	public String getAdressePharmacieGarde() {
+		return adressePharmacieGarde;
+	}
+
+	public void setAdressePharmacieGarde(String adressePharmacieGarde) {
+		this.adressePharmacieGarde = adressePharmacieGarde;
+	}
+
+	public String getTelephonePharmacieGarde() {
+		return telephonePharmacieGarde;
+	}
+
+	public void setTelephonePharmacieGarde(String telephonePharmacieGarde) {
+		this.telephonePharmacieGarde = telephonePharmacieGarde;
+	}
+
+	@Column(name = "contactPharmacieGarde", nullable = true, length = 20)
+	private String contactPharmacieGarde;
+
+	public String getContactPharmacieGarde() {
+		return contactPharmacieGarde;
+	}
+
+	public void setContactPharmacieGarde(String contactPharmacieGarde) {
+		this.contactPharmacieGarde = contactPharmacieGarde;
+	}
+
+	@Column(name = "telephonePharmacieGarde", nullable = true, length = 50)
+	private String telephonePharmacieGarde;
+
 	private void setIdGarde(long value) {
 		this.idGarde = value;
 	}
@@ -59,23 +94,7 @@ public class TourDeGarde implements Serializable {
 	public java.util.Date getDateDeFin() {
 		return dateDeFin;
 	}
-	
-	public void setPharmacieNonInscrit(String value) {
-		this.pharmacieNonInscrit = value;
-	}
-	
-	public String getPharmacieNonInscrit() {
-		return pharmacieNonInscrit;
-	}
-	
-	public void setPharmacie(java.util.Set value) {
-		this.pharmacie = value;
-	}
-	
-	public java.util.Set getPharmacie() {
-		return pharmacie;
-	}
-	
+
 	
 	public String toString() {
 		return String.valueOf(getIdGarde());

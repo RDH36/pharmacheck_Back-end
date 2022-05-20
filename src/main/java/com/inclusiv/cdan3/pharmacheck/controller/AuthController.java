@@ -3,15 +3,13 @@ package com.inclusiv.cdan3.pharmacheck.controller;
 import com.inclusiv.cdan3.pharmacheck.models.Utilisateur;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

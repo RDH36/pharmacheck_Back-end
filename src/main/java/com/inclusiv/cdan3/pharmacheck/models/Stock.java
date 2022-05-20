@@ -64,6 +64,14 @@ public class Stock implements Serializable {
 		return prixDeVente;
 	}
 
+	public void setProduit(Produit value) {
+		this.produit = value;
+	}
+
+	public Produit getProduit() {
+		return produit;
+	}
+
 	public void setPharmacie(Pharmacie value) {
 		this.pharmacie = value;
 	}
@@ -72,14 +80,7 @@ public class Stock implements Serializable {
 		return pharmacie;
 	}
 	
-	public void setProduit(Produit value) {
-		this.produit = value;
-	}
-	
-	public Produit getProduit() {
-		return produit;
-	}
-	
+
 	public void setFacture(java.util.Set value) {
 		this.facture = value;
 	}
