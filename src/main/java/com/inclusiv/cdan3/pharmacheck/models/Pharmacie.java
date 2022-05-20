@@ -3,7 +3,6 @@ package com.inclusiv.cdan3.pharmacheck.models;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Pharmacie")
 public class Pharmacie implements Serializable {
 	public Pharmacie() {
@@ -11,8 +10,7 @@ public class Pharmacie implements Serializable {
 	
 	@Column(name="ID", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="PHARMACIE_IDPHARMACIE_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="PHARMACIE_IDPHARMACIE_GENERATOR", strategy="native")	
+	@GeneratedValue
 	private long idPharmacie;
 	
 	@Column(name="NomPharmacie", nullable=true, length=255)	
@@ -24,7 +22,7 @@ public class Pharmacie implements Serializable {
 	@Column(name="StatitPharmacie", nullable=true, length=255)	
 	private String statitPharmacie;
 	
-	@Column(name="EtatValidationCompte", nullable=true, length=255, columnDefinition = "En attente")
+	@Column(name="EtatValidationCompte", nullable=true, length=255)
 	private String etatValidationCompte;
 	
 	@Column(name="Adresse", nullable=true, length=255)	
