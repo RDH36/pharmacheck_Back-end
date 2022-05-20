@@ -16,19 +16,32 @@ public class ServicePharmacie {
     @Autowired
     PharmacieRepository pharmacieRepository;
 
+    //Liste de toutes les pharmacies
     public List<Pharmacie> listPharmacie (){
         return  pharmacieRepository.findAll();
     }
 
-    public Pharmacie savePharmacie (Pharmacie newPharmacie){
-        return pharmacieRepository.save(newPharmacie);
+    //Liste des pharmacies qui n'ont pas encore été validées
+    public List<Pharmacie> listPharamacieNonValide(){
+        return  pharmacieRepository.listPharmacieNonValide();
     }
 
+    //Récupération de la pharmacie par son email
+    public Pharmacie getUserPharmacieByMail(String pharmacie){
+        return pharmacieRepository.getUserPharmacie(pharmacie);
+    }
+
+    //Enregistre pharmacie
+    public void savePharmacieAuth(Pharmacie pharmacie){
+        pharmacieRepository.save(pharmacie);
+    }
+
+    //Efface pharmacie par son id
     public void deletePharmacieById(long id){
         pharmacieRepository.deleteById(id);
     }
 
     public Pharmacie getById(Long id_phramacie) {
-        return  pharmacieRepository.getById(id_phramacie);
+        return pharmacieRepository.getById(id_phramacie);
     }
 }

@@ -8,9 +8,11 @@ import com.inclusiv.cdan3.pharmacheck.service.ServicePharmacie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/pharmacie")
 public class PharmacieController {
     @Autowired
@@ -18,26 +20,33 @@ public class PharmacieController {
     @Autowired
     StockRepository stockRepository;
 
-    @GetMapping("/listpharmacie")
+    //Renvoie la liste de toutes les pharmacies eenregistrées
+    @GetMapping("/listPharmacie")
     public List<Pharmacie> list(){
         return servicePharmacie.listPharmacie();
     }
 
-    @PostMapping(path = "/addpharmacie", consumes = "application/json")
-    public Pharmacie create(@RequestBody Pharmacie newPharmacie){
-        Pharmacie pharmacie = servicePharmacie.savePharmacie(newPharmacie);
+    //Session pharmacie
+    @GetMapping("/pharmacie")
+    public Pharmacie pharmacie(HttpSession session){
+        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) session.getAttribute("MAIL_PHARMACIE"));
+        session.setAttribute("ID_PHARMACIE", pharmacie.getIdPharmacie());
         return pharmacie;
     }
 
+    //Efface pharmacie
     @GetMapping("/deletepharmacie")
-    public void delete (@RequestParam(value = "ID") long id  ){
-        servicePharmacie.deletePharmacieById(id);
+    public String delete (HttpSession session ){
+        servicePharmacie.deletePharmacieById((long) session.getAttribute("ID_PHARMACIE"));
+        return "delete";
     }
 
     @JsonIgnore
-    @GetMapping("/liste")
-    public List<Stock> stockList (@RequestParam(value = "ID") long id){
-        System.out.println(stockRepository.listestockpharmacie(id));
-        return stockRepository.listestockpharmacie(id);
+    @GetMapping("/listStock")
+    public List<Stock> stockList (HttpSession session){
+        System.out.println(stockRepository.listestockpharmacie((Long) session.getAttribute("ID_PHARMACIE")));
+        return stockRepository.listestockpharmacie((Long) session.getAttribute("ID_PHARMACIE"));
     }
+
+
 }

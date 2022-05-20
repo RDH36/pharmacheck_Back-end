@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/produits")
 public class ProduitController {
     @Autowired
@@ -34,7 +35,7 @@ public class ProduitController {
     @PostMapping(path = "/add", consumes = "application/json")
     public Produit addProduit (@RequestBody Produit newProduit, HttpSession session) {
         Stock stock = new Stock();
-        Pharmacie pharmacie = servicePharmacie.getById((Long) session.getAttribute("ID_PHRAMACIE"));
+        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) session.getAttribute("MAIL_PHARMACIE"));
         stock.setProduit(newProduit);
         stock.setPharmacie(pharmacie);
         newProduit.getStock().add(stock);
