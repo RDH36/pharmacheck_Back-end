@@ -33,6 +33,8 @@ public class Produit implements Serializable {
 	private String classePharmaceutique;
 	@OneToMany(mappedBy="produit", targetEntity=Stock.class, cascade = CascadeType.PERSIST)
 	private java.util.Set<Produit> stock = new java.util.HashSet();
+
+
 	
 	private void setIdProduit(long value) {
 		this.idProduit = value;

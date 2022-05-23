@@ -1,20 +1,17 @@
 package com.inclusiv.cdan3.pharmacheck.controller;
 
-import com.inclusiv.cdan3.pharmacheck.models.Pharmacie;
 import com.inclusiv.cdan3.pharmacheck.models.Produit;
 import com.inclusiv.cdan3.pharmacheck.models.Stock;
 import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
-import com.inclusiv.cdan3.pharmacheck.service.ServicePharmacie;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceProduit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
-
+@CrossOrigin()
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/produits")
 public class ProduitController {
     @Autowired
@@ -23,22 +20,17 @@ public class ProduitController {
     @Autowired
     StockRepository stockRepository;
 
-    @Autowired
-    ServicePharmacie servicePharmacie;
-
     @GetMapping("/list")
     public List<Produit> produitList() {
+        Stock stk = new Stock();
+        stk.getProduit().getNomCommercial();
         return  serviceProduit.listeProduit();
     }
 
 
     @PostMapping(path = "/add", consumes = "application/json")
-    public Produit addProduit (@RequestBody Produit newProduit, HttpSession session) {
-        Stock stock = new Stock();
-        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) session.getAttribute("MAIL_PHARMACIE"));
-        stock.setProduit(newProduit);
-        stock.setPharmacie(pharmacie);
-        newProduit.getStock().add(stock);
+    public Produit addProduit (@RequestBody Produit newProduit) {
+
          return  serviceProduit.addProduit(newProduit);
     }
 

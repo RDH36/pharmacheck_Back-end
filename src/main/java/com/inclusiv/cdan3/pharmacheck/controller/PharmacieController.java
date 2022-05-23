@@ -2,6 +2,7 @@ package com.inclusiv.cdan3.pharmacheck.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inclusiv.cdan3.pharmacheck.models.Pharmacie;
+import com.inclusiv.cdan3.pharmacheck.models.Produit;
 import com.inclusiv.cdan3.pharmacheck.models.Stock;
 import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
 import com.inclusiv.cdan3.pharmacheck.service.ServicePharmacie;
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
-@RestController
 @CrossOrigin("*")
+@RestController
 @RequestMapping("/pharmacie")
 public class PharmacieController {
     @Autowired
@@ -25,13 +27,6 @@ public class PharmacieController {
     public List<Pharmacie> list(){
         return servicePharmacie.listPharmacie();
     }
-
-
-    @GetMapping("/listPharmacieAttente")
-    public  List<Pharmacie> listAttente() {return servicePharmacie.listPharamacieNonValide();}
-
-    @GetMapping("/listPharmacieValide")
-    public  List<Pharmacie> listValide() {return servicePharmacie.listPharamacieValide();}
 
     //Session pharmacie
     @GetMapping("/pharmacie")
@@ -50,9 +45,9 @@ public class PharmacieController {
 
     @JsonIgnore
     @GetMapping("/listStock")
-    public List<Stock> stockList (HttpSession session){
-        System.out.println(stockRepository.listestockpharmacie((Long) session.getAttribute("ID_PHARMACIE")));
-        return stockRepository.listestockpharmacie((Long) session.getAttribute("ID_PHARMACIE"));
+    public List<Stock> stockList (@RequestParam(value = "ID") long id){
+        System.out.println(stockRepository.findStockByPharmacie_IdPharmacie(id));
+        return  stockRepository.findStockByPharmacie_IdPharmacie(id);
     }
 
 

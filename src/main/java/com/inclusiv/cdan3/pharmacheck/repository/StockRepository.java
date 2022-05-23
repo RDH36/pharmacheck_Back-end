@@ -1,5 +1,6 @@
 package com.inclusiv.cdan3.pharmacheck.repository;
 
+import com.inclusiv.cdan3.pharmacheck.dto.ListeStockPharmacie;
 import com.inclusiv.cdan3.pharmacheck.models.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,4 +22,6 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 
     @Query(value = "SELECT stock.id, stock.prix_de_vente, stock.quantite_disponible, stock.pharmacieid, stock.produitid, produit.id, produit.classe_pharmaceutique, produit.conditionnement, produit.dci, produit.nom_commercial, produit.presentation FROM stock INNER JOIN produit ON (stock.pharmacieid = :idpharmacie  AND produit.id=stock.produitid)", nativeQuery = true)
     List<Stock> listestockpharmacie(@Param("idpharmacie")long idpharmacie);
+    //@Query(value = "SELECT  stock.prix_de_vente, stock.quantite_disponible, produit.classe_pharmaceutique, produit.conditionnement, produit.dci, produit.nom_commercial, produit.presentation FROM stock INNER JOIN produit ON (stock.pharmacieid = :idpharmacie  AND produit.id=stock.produitid)", nativeQuery = true)
+    List<Stock> findStockByPharmacie_IdPharmacie(@Param("idpharmacie")long idpharmacie);
 }

@@ -16,8 +16,14 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     //Recupère liste pharmacie non valide
     @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharamacie, nif_pharmacie FROM pharmacie WHERE etat_validation_compte != 'Valide'", nativeQuery = true)
     List<Pharmacie> listPharmacieNonValide();
-
     @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharamacie, nif_pharmacie FROM pharmacie WHERE etat_validation_compte = 'Valide'", nativeQuery = true)
     List<Pharmacie> listPharmacieValide();
+
+    @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharmacie FROM public.pharmacie WHERE (nom_pharmacie ILIKE '%:recherche%') OR (adresse ILIKE '% :recherche %')", nativeQuery = true)
+    List<Pharmacie> rechercheMulticriterePharmacie(@Param("recherche") String recherche);
+
+    List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCase(String rechercheAdresse, String rechercheNomPharmacie);
+
+    List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
 
 }
