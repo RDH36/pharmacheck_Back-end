@@ -17,4 +17,7 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharamacie, nif_pharmacie FROM pharmacie WHERE etat_validation_compte != 'Valide'", nativeQuery = true)
     List<Pharmacie> listPharmacieNonValide();
 
+    @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharamacie, nif_pharmacie FROM pharmacie WHERE etat_validation_compte = 'Valide'", nativeQuery = true)
+    List<Pharmacie> listPharmacieValide();
+
 }

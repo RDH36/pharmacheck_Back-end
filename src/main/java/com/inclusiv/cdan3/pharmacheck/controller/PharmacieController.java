@@ -26,6 +26,13 @@ public class PharmacieController {
         return servicePharmacie.listPharmacie();
     }
 
+
+    @GetMapping("/listPharmacieAttente")
+    public  List<Pharmacie> listAttente() {return servicePharmacie.listPharamacieNonValide();}
+
+    @GetMapping("/listPharmacieValide")
+    public  List<Pharmacie> listValide() {return servicePharmacie.listPharamacieValide();}
+
     //Session pharmacie
     @GetMapping("/pharmacie")
     public Pharmacie pharmacie(HttpSession session){

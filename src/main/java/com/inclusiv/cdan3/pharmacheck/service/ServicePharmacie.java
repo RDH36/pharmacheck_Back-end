@@ -26,6 +26,10 @@ public class ServicePharmacie {
         return  pharmacieRepository.listPharmacieNonValide();
     }
 
+    public List<Pharmacie> listPharamacieValide(){
+        return  pharmacieRepository.listPharmacieValide();
+    }
+
     //Récupération de la pharmacie par son email
     public Pharmacie getUserPharmacieByMail(String pharmacie){
         return pharmacieRepository.getUserPharmacie(pharmacie);
