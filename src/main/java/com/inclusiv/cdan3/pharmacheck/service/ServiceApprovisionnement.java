@@ -5,6 +5,7 @@ import com.inclusiv.cdan3.pharmacheck.repository.ApprovisionnementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,6 +18,7 @@ public class ServiceApprovisionnement {
     }
 
     public Approvisionnement addApprovisionement(Approvisionnement appr) {
+        Approvisionnement approvisionnement;
         return  approvisionnementRepository.save(appr);
     }
 }

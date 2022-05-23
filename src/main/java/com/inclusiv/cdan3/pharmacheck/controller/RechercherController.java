@@ -1,42 +1,44 @@
 package com.inclusiv.cdan3.pharmacheck.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inclusiv.cdan3.pharmacheck.models.Pharmacie;
+import com.inclusiv.cdan3.pharmacheck.models.Produit;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceRecherche;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/search")
 public class RechercherController {
     @Autowired
     ServiceRecherche serviceRecherche;
 
+    //Recherche pharmacie
+    @JsonIgnore
     @GetMapping("/pharmacie")
-    public List<Pharmacie> list(String recherche){
-        System.out.println(recherche);
-        System.out.println(serviceRecherche.recherchePharmacie(recherche));
-        return serviceRecherche.recherchePharmacie(recherche);
-    }
-
-    @GetMapping("/test")
-    public List<Pharmacie> listTest(String recherche){
-        return serviceRecherche.recherche(recherche);
-    }
-
-    @GetMapping("/testPharma")
-    public List<Pharmacie> listPharmacie(@RequestParam(value = "recherche")String recherche){
-       /* System.out.println(recherche);
+    public List<List<Pharmacie>> listPharmacie(@RequestParam(value = "recherche")String recherche){
         String [] search = recherche.split(" ");
         List<List<Pharmacie>> pharmacieList = new ArrayList<>();
         for(int i=0; i<search.length; i++){
-            pharmacieList.add(serviceRecherche.recherche(search[i]));
-        }*/
-        return serviceRecherche.recherche(recherche);
+            pharmacieList.add(serviceRecherche.recherchePharmacie(search[i]));
+        }
+        return pharmacieList;
+    }
+
+    //Recherche produit
+    @JsonIgnore
+    @GetMapping("/rechercheProduit")
+    public List<List <Produit>> listProduit(@RequestParam(value = "recherche") String recherche){
+        String [] search = recherche.split(" ");
+        List<List<Produit>> produitlist = new ArrayList<>();
+        for (int i=0; i<search.length; i++){
+            produitlist.add(serviceRecherche.rechercheProduit(search[i]));
+        }
+        return produitlist;
     }
 }
