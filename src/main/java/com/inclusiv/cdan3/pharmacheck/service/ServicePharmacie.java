@@ -44,4 +44,13 @@ public class ServicePharmacie {
     public Pharmacie getById(Long id_phramacie) {
         return pharmacieRepository.getById(id_phramacie);
     }
+
+    public List<Pharmacie> rechrchePharmacie(){
+        return  pharmacieRepository.listPharmacieNonValide();
+    }
+
+
+    public void updatePharmacieById(long id, Pharmacie pharmacie) {
+
+    }
 }

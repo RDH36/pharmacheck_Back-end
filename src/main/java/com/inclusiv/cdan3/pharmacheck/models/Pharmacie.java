@@ -33,17 +33,11 @@ public class Pharmacie implements Serializable {
 	@Column(name="Telephonne", nullable=true, length=255)	
 	private String telephonne;
 	
-	@Column(name="Email", nullable=true, length=255)	
+	@Column(name="Email", nullable=true, length=255, unique = true)
 	private String email;
 	
 	@Column(name="MotDePasse", nullable=true, length=255)	
 	private String motDePasse;
-	
-	@ManyToMany(mappedBy="pharmacie", targetEntity=TourDeGarde.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set tourDeGarde = new java.util.HashSet();
-
 
 	private void setIdPharmacie(long value) {
 		this.idPharmacie = value;
@@ -119,14 +113,6 @@ public class Pharmacie implements Serializable {
 	
 	public String getMotDePasse() {
 		return motDePasse;
-	}
-	
-	public void setTourDeGarde(java.util.Set value) {
-		this.tourDeGarde = value;
-	}
-	
-	public java.util.Set getTourDeGarde() {
-		return tourDeGarde;
 	}
 
 	public String toString() {

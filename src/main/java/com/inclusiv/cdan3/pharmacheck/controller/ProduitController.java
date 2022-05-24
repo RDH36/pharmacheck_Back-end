@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/produits")
@@ -29,6 +30,8 @@ public class ProduitController {
 
     @GetMapping("/list")
     public List<Produit> produitList() {
+        Stock stk = new Stock();
+        stk.getProduit().getNomCommercial();
         return  serviceProduit.listeProduit();
     }
 
@@ -40,7 +43,7 @@ public class ProduitController {
         stock.setProduit(newProduit);
         stock.setPharmacie(pharmacie);
         newProduit.getStock().add(stock);
-         return  serviceProduit.addProduit(newProduit);
+        return  serviceProduit.addProduit(newProduit);
     }
 
     @GetMapping("/produit")

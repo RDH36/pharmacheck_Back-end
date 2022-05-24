@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 @Entity
+
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Stock")
 public class Stock implements Serializable {
@@ -64,6 +66,15 @@ public class Stock implements Serializable {
 		return prixDeVente;
 	}
 
+	public void setProduit(Produit value) {
+		this.produit = value;
+	}
+
+
+	public Produit getProduit() {
+		return produit;
+	}
+
 	public void setPharmacie(Pharmacie value) {
 		this.pharmacie = value;
 	}
@@ -72,14 +83,7 @@ public class Stock implements Serializable {
 		return pharmacie;
 	}
 	
-	public void setProduit(Produit value) {
-		this.produit = value;
-	}
-	
-	public Produit getProduit() {
-		return produit;
-	}
-	
+
 	public void setFacture(java.util.Set value) {
 		this.facture = value;
 	}
