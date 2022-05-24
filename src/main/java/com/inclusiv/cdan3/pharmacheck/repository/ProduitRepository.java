@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface ProduitRepository extends JpaRepository<Produit, Long> {
 
-    List<Produit> findProduitByClassePharmaceutiqueContainsIgnoreCaseOrNomCommercialContainsIgnoreCaseOrDciContainsIgnoreCase(@Param("recherche") String rechercheClassePharmaceutique, @Param("recherche") String rechercheNomCommercial, @Param("recherche") String rechercheDci);
+    List<Produit> searchAllByClassePharmaceutiqueContainsIgnoreCaseOrNomCommercialContainsIgnoreCaseOrDciContainsIgnoreCase(@Param("recherche") String rechercheClassePharmaceutique, @Param("recherche") String rechercheNomCommercial, @Param("recherche") String rechercheDci);
 }

@@ -26,6 +26,6 @@ public class ServiceRecherche {
 
     //Recherche produit
     public List<Produit> rechercheProduit(String recherche){
-        return produitRepository.findProduitByClassePharmaceutiqueContainsIgnoreCaseOrNomCommercialContainsIgnoreCaseOrDciContainsIgnoreCase(recherche, recherche, recherche);
+        return produitRepository.searchAllByClassePharmaceutiqueContainsIgnoreCaseOrNomCommercialContainsIgnoreCaseOrDciContainsIgnoreCase(recherche, recherche, recherche);
     }
 }

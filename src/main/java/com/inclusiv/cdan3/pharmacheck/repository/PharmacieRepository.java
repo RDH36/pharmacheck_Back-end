@@ -23,7 +23,7 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     //Recherche pharmacie
     List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCase(@Param("recherche") String rechercheAdresse, @Param("recherche")String rechercheNomPharmacie);
 
-    List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
+    //List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
 
-
+    //List<Pharmacie> findPharmacieByAdresseRegex(@Param("recherche")String recherche);
 }

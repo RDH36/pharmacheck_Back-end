@@ -41,4 +41,12 @@ public class RechercherController {
         }
         return produitlist;
     }
+/*
+    @JsonIgnore
+    @GetMapping("/test")
+    public List<Pharmacie>listpharmacie(@RequestParam(value = "recherche")String recherche){
+        return serviceRecherche.testPharma(recherche);
+    }
+
+ */
 }
