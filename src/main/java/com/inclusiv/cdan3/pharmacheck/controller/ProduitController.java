@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/produits")
 public class ProduitController {
@@ -27,6 +28,8 @@ public class ProduitController {
 
     @GetMapping("/list")
     public List<Produit> produitList() {
+        Stock stk = new Stock();
+        stk.getProduit().getNomCommercial();
         return  serviceProduit.listeProduit();
     }
 
@@ -38,6 +41,7 @@ public class ProduitController {
         stock.setProduit(newProduit);
         stock.setPharmacie(pharmacie);
         newProduit.getStock().add(stock);
+
          return  serviceProduit.addProduit(newProduit);
     }
 
