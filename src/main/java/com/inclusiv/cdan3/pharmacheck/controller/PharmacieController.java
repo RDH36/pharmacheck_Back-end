@@ -43,6 +43,11 @@ public class PharmacieController {
         return "delete";
     }
 
+    @DeleteMapping("/delete")
+    public void delete (long id ){
+        servicePharmacie.deletePharmacieById(id);
+    }
+
     @JsonIgnore
     @GetMapping("/listStock")
     public List<Stock> stockList (@RequestParam(value = "ID") long id){

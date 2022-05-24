@@ -18,7 +18,7 @@ public class Stock implements Serializable {
 	@GeneratedValue
 	private long idStock;
 	@JsonIgnore
-	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumns(value={ @JoinColumn(name="ProduitID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKStock253621"))
 	private Produit produit;
 

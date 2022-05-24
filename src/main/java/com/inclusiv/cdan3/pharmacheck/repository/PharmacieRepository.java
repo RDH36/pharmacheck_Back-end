@@ -26,4 +26,7 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     //List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
 
     //List<Pharmacie> findPharmacieByAdresseRegex(@Param("recherche")String recherche);
+
+    List<Pharmacie> findPharmacieByEtatValidationCompteEqualsIgnoreCase(@Param("valide") String valide);
+
 }

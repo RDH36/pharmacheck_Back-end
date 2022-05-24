@@ -45,6 +45,10 @@ public class ServicePharmacie {
         return  pharmacieRepository.listPharmacieNonValide();
     }
 
+    public List<Pharmacie> pharmacieList (String valide){
+        valide = "valide";
+        return pharmacieRepository.findPharmacieByEtatValidationCompteEqualsIgnoreCase(valide);
+    }
 
     public void updatePharmacieById(long id, Pharmacie pharmacie) {
     }
