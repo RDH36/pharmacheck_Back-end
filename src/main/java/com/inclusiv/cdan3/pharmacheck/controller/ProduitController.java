@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,6 +43,10 @@ public class ProduitController {
          return  serviceProduit.addProduit(newProduit);
     }
 
+    @GetMapping("/produit")
+    public Produit getProduitById(@RequestParam("id") long id) {
+        return  serviceProduit.getProduitById(id);
+    }
     @GetMapping("/delete")
     public  void delete (@RequestParam(value = "idProduit") long id) {
         serviceProduit.deleteProduitByID(id);
