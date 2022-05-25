@@ -49,6 +49,17 @@ public class ServicePharmacie {
         return  pharmacieRepository.listPharmacieNonValide();
     }
 
-
+    public Pharmacie validePharmaceie (long idPharmacie){
+        return pharmacieRepository.validePharmacie(idPharmacie);
+    }
+    public  Pharmacie blockPharmacie(long idPharmacie){
+        return  pharmacieRepository.blockPharmacie(idPharmacie);
+    }
+    public long countValide(){
+        return pharmacieRepository.countValide();
+    }
+    public long countNonValide(){
+        return pharmacieRepository.countNonValide();
+    }
 
 }

@@ -13,6 +13,12 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nif_pharmacie, nom_pharmacie, statit_pharmacie, telephonne FROM pharmacie WHERE email= :mail", nativeQuery = true)
     Pharmacie getUserPharmacie(@Param("mail") String mail);
 
+    @Query(value = "UPDATE pharmacie SET etat_validation_compte='Valide' WHERE id= :idPharmacie", nativeQuery = true)
+    Pharmacie validePharmacie(@Param("idPharmacie") long idPharmacie);
+
+    @Query(value = "UPDATE pharmacie SET etat_validation_compte='En attente' WHERE id= :idPharmacie", nativeQuery = true)
+    Pharmacie blockPharmacie(@Param("idPharmacie") long idPharmacie);
+
     //Recupère liste pharmacie non valide
     @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharmacie FROM pharmacie WHERE etat_validation_compte != 'Valide'", nativeQuery = true)
     List<Pharmacie> listPharmacieNonValide();
@@ -26,5 +32,11 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCase(@Param("recherche") String rechercheAdresse, @Param("recherche")String rechercheNomPharmacie);
 
     List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
+
+    @Query(value = "SELECT COUNT(id) FROM public.pharmacie WHERE (etat_validation_compte = 'Valide')", nativeQuery = true)
+    long countValide();
+
+    @Query(value = "SELECT COUNT(id) FROM public.pharmacie WHERE (etat_validation_compte != 'Valide')", nativeQuery = true)
+    long countNonValide();
 
 }
