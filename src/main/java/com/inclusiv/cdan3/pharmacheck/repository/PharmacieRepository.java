@@ -17,15 +17,20 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharmacie FROM pharmacie WHERE etat_validation_compte != 'Valide'", nativeQuery = true)
     List<Pharmacie> listPharmacieNonValide();
 
-    @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharmacie FROM public.pharmacie WHERE (nom_pharmacie ILIKE '%bao%') OR (adresse ILIKE '% :recherche %')", nativeQuery = true)
+    @Query(value = "SELECT id, adresse, email, etat_validation_compte, mot_de_passe, nom_pharmacie, statit_pharmacie, telephonne, nif_pharmacie FROM public.pharmacie WHERE (nom_pharmacie ILIKE '%bao%') OR (adresse ILIKE '%?1%')", nativeQuery = true)
     List<Pharmacie> rechercheMulticriterePharmacie(@Param("recherche") String recherche);
 
     //Recherche pharmacie
     List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCase(@Param("recherche") String rechercheAdresse, @Param("recherche")String rechercheNomPharmacie);
 
+    @Query(value = "UPDATE pharmacie SET etat_validation_compte='Valide' WHERE id=:id",nativeQuery = true)
+    Pharmacie setValidationStock(@Param("id") long id);
+
     //List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
 
     //List<Pharmacie> findPharmacieByAdresseRegex(@Param("recherche")String recherche);
+
+    List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCaseAndEtatValidationCompteIsLike(@Param("recherche") String rechercheAdresse, @Param("recherche")String rechercheNomPharmacie,@Param("valide")String valide);
 
     List<Pharmacie> findPharmacieByEtatValidationCompteEqualsIgnoreCase(@Param("valide") String valide);
 

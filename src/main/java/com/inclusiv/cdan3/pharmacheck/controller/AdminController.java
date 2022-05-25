@@ -32,7 +32,7 @@ public class AdminController {
     }
 
     //Validation de la pharmacie
-    @PutMapping(path = "/validationPharmacie", consumes = "application/json")
+    @PutMapping(path = "/validationPharmacie")
     public void validationPharmacie (@RequestBody Pharmacie pharmacie){
             pharmacie.setEtatValidationCompte("Valide");
             servicePharmacie.savePharmacieAuth(pharmacie);

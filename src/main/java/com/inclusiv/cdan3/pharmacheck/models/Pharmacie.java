@@ -24,7 +24,7 @@ public class Pharmacie implements Serializable {
 	@Column(name="StatitPharmacie", nullable=true, length=255)	
 	private String statitPharmacie;
 	
-	@Column(name="EtatValidationCompte", nullable=true, length=255, columnDefinition = "En attente")
+	@Column(name="EtatValidationCompte", nullable=true, length=255)
 	private String etatValidationCompte;
 	
 	@Column(name="Adresse", nullable=true, length=255)	
