@@ -21,11 +21,11 @@ public class RechercherController {
     //Recherche pharmacie
     @JsonIgnore
     @GetMapping("/pharmacie")
-    public List<List<Pharmacie>> listPharmacie(@RequestParam(value = "recherche")String recherche){
+    public List<Pharmacie> listPharmacie(@RequestParam(value = "recherche")String recherche){
         String [] search = recherche.split(" ");
-        List<List<Pharmacie>> pharmacieList = new ArrayList<>();
+        List<Pharmacie> pharmacieList = new ArrayList<>();
         for(int i=0; i<search.length; i++){
-            pharmacieList.add(serviceRecherche.recherchePharmacie(search[i]));
+            pharmacieList=(serviceRecherche.recherchePharmacie(search[i]));
         }
         return pharmacieList;
     }

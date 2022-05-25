@@ -31,12 +31,20 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
     //Recherche pharmacie
     List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCase(@Param("recherche") String rechercheAdresse, @Param("recherche")String rechercheNomPharmacie);
 
-    List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
+    @Query(value = "UPDATE pharmacie SET etat_validation_compte='Valide' WHERE id=:id",nativeQuery = true)
+    Pharmacie setValidationStock(@Param("id") long id);
+
+    //List<Pharmacie> findPharmacieByAdresseContainingOrNomPharmacieContaining(@Param("recherche")String rechercheAdresse, @Param("recherche") String rechercheNomPharmacie);
 
     @Query(value = "SELECT COUNT(id) FROM public.pharmacie WHERE (etat_validation_compte = 'Valide')", nativeQuery = true)
     long countValide();
 
     @Query(value = "SELECT COUNT(id) FROM public.pharmacie WHERE (etat_validation_compte != 'Valide')", nativeQuery = true)
     long countNonValide();
+    //List<Pharmacie> findPharmacieByAdresseRegex(@Param("recherche")String recherche);
+
+    List<Pharmacie> findPharmacieByAdresseContainsIgnoreCaseOrNomPharmacieContainsIgnoreCaseAndEtatValidationCompteIsLike(@Param("recherche") String rechercheAdresse, @Param("recherche")String rechercheNomPharmacie,@Param("valide")String valide);
+
+    List<Pharmacie> findPharmacieByEtatValidationCompteEqualsIgnoreCase(@Param("valide") String valide);
 
 }

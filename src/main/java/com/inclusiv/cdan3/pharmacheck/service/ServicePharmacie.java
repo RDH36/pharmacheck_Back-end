@@ -59,7 +59,13 @@ public class ServicePharmacie {
         return pharmacieRepository.countValide();
     }
     public long countNonValide(){
-        return pharmacieRepository.countNonValide();
+        return pharmacieRepository.countNonValide();}
+
+    public List<Pharmacie> pharmacieList (String valide){
+        valide = "valide";
+        return pharmacieRepository.findPharmacieByEtatValidationCompteEqualsIgnoreCase(valide);
     }
 
+    public void updatePharmacieById(long id, Pharmacie pharmacie) {
+    }
 }
