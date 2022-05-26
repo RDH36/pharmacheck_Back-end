@@ -23,6 +23,9 @@ public class ServiceUtilisateur {
     public void saveUtilisateurWithAuth(Utilisateur user) {
         utilisateurRepository.save(user);
     }
+    public long countUser(){
+        return utilisateurRepository.countUser();
+    }
 
     public void deleteUtilisateurByID(long id) {
         utilisateurRepository.deleteById(id);

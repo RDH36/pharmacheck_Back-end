@@ -26,6 +26,10 @@ public class ServicePharmacie {
         return  pharmacieRepository.listPharmacieNonValide();
     }
 
+    public List<Pharmacie> listPharamacieValide(){
+        return  pharmacieRepository.listPharmacieValide();
+    }
+
     //Récupération de la pharmacie par son email
     public Pharmacie getUserPharmacieByMail(String pharmacie){
         return pharmacieRepository.getUserPharmacie(pharmacie);
@@ -41,6 +45,7 @@ public class ServicePharmacie {
         pharmacieRepository.deleteById(id);
     }
 
+
     public Pharmacie getById(Long id_phramacie) {
         return pharmacieRepository.getById(id_phramacie);
     }
@@ -49,6 +54,22 @@ public class ServicePharmacie {
         return  pharmacieRepository.listPharmacieNonValide();
     }
 
+    public Pharmacie validePharmaceie (long idPharmacie){
+        return pharmacieRepository.validePharmacie(idPharmacie);
+    }
+    public  Pharmacie blockPharmacie(long idPharmacie){
+        return  pharmacieRepository.blockPharmacie(idPharmacie);
+    }
+    public long countValide(){
+        return pharmacieRepository.countValide();
+    }
+    public long countNonValide(){
+        return pharmacieRepository.countNonValide();}
+
+    public List<Pharmacie> pharmacieList (String valide){
+        valide = "valide";
+        return pharmacieRepository.findPharmacieByEtatValidationCompteEqualsIgnoreCase(valide);
+    }
 
     public void updatePharmacieById(long id, Pharmacie pharmacie) {
 
