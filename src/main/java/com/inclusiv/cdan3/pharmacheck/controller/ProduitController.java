@@ -37,4 +37,9 @@ public class ProduitController {
     public  void delete (@RequestParam(value = "idProduit") long id) {
         serviceProduit.deleteProduitByID(id);
     }
+
+    @GetMapping("/dernierproduit")
+    public List<Produit> dernierProduit (@RequestParam(value = "idPharmacie")long idPharmacie){
+        return serviceProduit.dernierProduit(idPharmacie);
+    }
 }
