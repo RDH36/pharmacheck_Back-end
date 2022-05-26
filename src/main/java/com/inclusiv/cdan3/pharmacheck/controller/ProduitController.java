@@ -22,7 +22,8 @@ public class ProduitController {
 
     @GetMapping("/list")
     public List<Produit> produitList() {
-
+        Stock stk = new Stock();
+        stk.getProduit().getNomCommercial();
         return  serviceProduit.listeProduit();
     }
 

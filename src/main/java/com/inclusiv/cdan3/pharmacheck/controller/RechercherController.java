@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin()
 @RestController
 @RequestMapping("/search")
 public class RechercherController {
@@ -41,15 +41,4 @@ public class RechercherController {
         }
         return produitlist;
     }
-
-
-
-/*
-    @JsonIgnore
-    @GetMapping("/test")
-    public List<Pharmacie>listpharmacie(@RequestParam(value = "recherche")String recherche){
-        return serviceRecherche.testPharma(recherche);
-    }
-
- */
 }
