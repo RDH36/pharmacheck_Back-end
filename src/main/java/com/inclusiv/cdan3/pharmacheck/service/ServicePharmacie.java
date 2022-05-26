@@ -45,6 +45,11 @@ public class ServicePharmacie {
         pharmacieRepository.deleteById(id);
     }
 
+
+    public Pharmacie getById(Long id_phramacie) {
+        return pharmacieRepository.getById(id_phramacie);
+    }
+
     public List<Pharmacie> rechrchePharmacie(){
         return  pharmacieRepository.listPharmacieNonValide();
     }
@@ -67,5 +72,6 @@ public class ServicePharmacie {
     }
 
     public void updatePharmacieById(long id, Pharmacie pharmacie) {
+
     }
 }

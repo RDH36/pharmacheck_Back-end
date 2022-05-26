@@ -6,6 +6,7 @@ import com.inclusiv.cdan3.pharmacheck.service.ServiceApprovisionnement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,6 +26,7 @@ public class ApprovisionnementController {
     @PostMapping(path = "/add", consumes = "application/json")
     public Approvisionnement addApprovisionement(@RequestBody Approvisionnement newAppr) {
         int qteStock = stockRepository.getQteStockProduit(newAppr.getIdPharmacie(), newAppr.getIdProduit());
+        System.out.println(qteStock);
         stockRepository.updateStock(newAppr.getPrixDeVente(), (newAppr.getQuantiteEntrant() + qteStock), newAppr.getIdPharmacie(), newAppr.getIdProduit());
         return  serviceApprovisionnement.addApprovisionement(newAppr);
     }

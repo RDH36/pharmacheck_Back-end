@@ -27,7 +27,9 @@ public class ServiceProduit {
         return  produitRepository.findAll();
     }
 
-
+    public Produit getProduitById(long id) {
+        return  produitRepository.getById(id);
+    }
     public Produit addProduit(Produit newProduit) {
         return  produitRepository.save(newProduit);
     }

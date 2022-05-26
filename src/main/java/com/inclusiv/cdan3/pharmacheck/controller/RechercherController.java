@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin()
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/search")
 public class RechercherController {

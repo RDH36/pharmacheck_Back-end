@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@CrossOrigin()
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {

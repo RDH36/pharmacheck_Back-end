@@ -3,6 +3,7 @@ package com.inclusiv.cdan3.pharmacheck.models;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
+@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Pharmacie")
 public class Pharmacie implements Serializable {
 	public Pharmacie() {
