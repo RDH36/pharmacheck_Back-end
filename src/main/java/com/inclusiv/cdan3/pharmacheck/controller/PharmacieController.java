@@ -6,21 +6,27 @@ import com.inclusiv.cdan3.pharmacheck.models.Produit;
 import com.inclusiv.cdan3.pharmacheck.models.Stock;
 import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
 import com.inclusiv.cdan3.pharmacheck.service.ServicePharmacie;
+import com.inclusiv.cdan3.pharmacheck.service.ServiceProduit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("*")
+
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/pharmacie")
 public class PharmacieController {
     @Autowired
     ServicePharmacie servicePharmacie;
     @Autowired
     StockRepository stockRepository;
+
+    @Autowired
+    ServiceProduit serviceProduit;
 
     //Renvoie la liste de toutes les pharmacies eenregistrées
     @GetMapping("/listPharmacie")
@@ -47,9 +53,13 @@ public class PharmacieController {
 
     @JsonIgnore
     @GetMapping("/listStock")
-    public List<Stock> stockList (@RequestParam(value = "ID") long id){
-        System.out.println(stockRepository.findStockByPharmacie_IdPharmacie(id));
-        return  stockRepository.findStockByPharmacie_IdPharmacie(id);
+    public List<Produit> stockList (@RequestParam(value = "ID") long id){
+        List<Stock> listProduit = stockRepository.findStockByPharmacie_IdPharmacie(id);
+        List<Produit> produitList = new ArrayList<>();
+        for(int i = 0; i < listProduit.size(); i++) {
+            produitList.add(listProduit.get(i).getProduit());
+        }
+        return produitList;
     }
 
 

@@ -27,7 +27,9 @@ public class ServiceProduit {
         return  produitRepository.findAll();
     }
 
-
+    public Produit getProduitById(long id) {
+        return  produitRepository.getById(id);
+    }
     public Produit addProduit(Produit newProduit) {
         return  produitRepository.save(newProduit);
     }
@@ -38,6 +40,10 @@ public class ServiceProduit {
 
     public List <Produit> dernierProduit(long idPharmacie){
         return produitRepository.listdernierproduit(idPharmacie);
+    }
+
+    public  List<Stock> listStock(){
+        return stockRepository.findAll();
     }
 
 }

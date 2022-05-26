@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin()
+
 @RestController
 @RequestMapping("/produits")
 public class ProduitController {
@@ -28,8 +29,6 @@ public class ProduitController {
 
     @GetMapping("/list")
     public List<Produit> produitList() {
-        Stock stk = new Stock();
-        stk.getProduit().getNomCommercial();
         return  serviceProduit.listeProduit();
     }
 
@@ -44,6 +43,10 @@ public class ProduitController {
         return  serviceProduit.addProduit(newProduit);
     }
 
+    @GetMapping("/produit")
+    public Produit getProduitById(@RequestParam("id") long id) {
+        return  serviceProduit.getProduitById(id);
+    }
     @GetMapping("/delete")
     public  void delete (@RequestParam(value = "idProduit") long id) {
         serviceProduit.deleteProduitByID(id);
@@ -53,4 +56,10 @@ public class ProduitController {
     public List<Produit> dernierProduit (@RequestParam(value = "idPharmacie")long idPharmacie){
         return serviceProduit.dernierProduit(idPharmacie);
     }
+
+    @GetMapping("/listStock")
+    public  List<Stock> listStock(){
+        return serviceProduit.listStock();
+    }
+
 }
