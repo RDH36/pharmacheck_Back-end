@@ -28,6 +28,8 @@ public class PharmacieController {
         return servicePharmacie.listPharmacie();
     }
 
+
+
     //Session pharmacie
     @GetMapping("/pharmacie")
     public Pharmacie pharmacie(HttpSession session){

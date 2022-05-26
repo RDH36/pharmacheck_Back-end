@@ -1,6 +1,8 @@
 package com.inclusiv.cdan3.pharmacheck.controller;
 
+import com.inclusiv.cdan3.pharmacheck.models.Facture;
 import com.inclusiv.cdan3.pharmacheck.models.Utilisateur;
+import com.inclusiv.cdan3.pharmacheck.service.ServiceFacture;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ public class UtilisateurController {
     @Autowired
     ServiceUtilisateur serviceUtilisateur;
 
+    @Autowired
+    ServiceFacture serviceFacture;
+
     @GetMapping("/listeInscrit")
     public List<Utilisateur> list() {
         return  serviceUtilisateur.listUtilisateur();
@@ -26,4 +31,13 @@ public class UtilisateurController {
         serviceUtilisateur.deleteUtilisateurByID((Long) session.getAttribute("ID_USER"));
         return "delete";
     }
+
+    @PostMapping("/addfacture")
+    public Facture addFacture(@RequestBody Facture facture){
+
+
+        return serviceFacture.addFacture(facture);
+    }
+
+
 }
