@@ -5,23 +5,18 @@ import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Utilisateur")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Discriminator", discriminatorType=DiscriminatorType.STRING)
-@DiscriminatorValue("Utilisateur")
 public class Utilisateur implements Serializable {
 	public Utilisateur() {
 	}
-
-	public Utilisateur(String nom, String prenom) {
-		this.nom = nom;
-		this.prenom = prenom;
-	}
-
-	@Column(name="IdUtilisateur", nullable=false, length=19)
+	
+	@Column(name="ID", nullable=false)	
 	@Id	
 	@GeneratedValue(generator="UTILISATEUR_IDUTILISATEUR_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="UTILISATEUR_IDUTILISATEUR_GENERATOR", strategy="native")	
 	private long idUtilisateur;
+	
+	@Column(name="StatutCompte", nullable=true, length=255)	
+	private String statutCompte;
 	
 	@Column(name="Nom", nullable=true, length=255)	
 	private String nom;
@@ -32,18 +27,19 @@ public class Utilisateur implements Serializable {
 	@Column(name="Adresse", nullable=true, length=255)	
 	private String adresse;
 	
-	@Column(name="Email", nullable=true, length=255)	
-	private String email;
-	
 	@Column(name="Telephonne", nullable=true, length=255)	
 	private String telephonne;
+	
+	@Column(name="Email", nullable=true, length=255, unique = true)
+	private String email;
 	
 	@Column(name="MotDepasse", nullable=true, length=255)	
 	private String motDepasse;
 	
-	@Column(name="StatutCompte", nullable=true, length=255)	
-	private String statutCompte;
-
+	@OneToMany(mappedBy="utilisateur", targetEntity=Facture.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set facture = new java.util.HashSet();
 	
 	private void setIdUtilisateur(long value) {
 		this.idUtilisateur = value;
@@ -112,8 +108,14 @@ public class Utilisateur implements Serializable {
 	public String getMotDepasse() {
 		return motDepasse;
 	}
-
-
+	
+	public void setFacture(java.util.Set value) {
+		this.facture = value;
+	}
+	
+	public java.util.Set getFacture() {
+		return facture;
+	}
 	
 	
 	public String toString() {
