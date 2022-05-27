@@ -28,4 +28,7 @@ public class UtilisateurController {
         serviceUtilisateur.deleteUtilisateurByID((Long) session.getAttribute("ID_USER"));
         return "delete";
     }
+
+
+
 }

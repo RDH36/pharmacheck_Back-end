@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,4 +52,16 @@ public class ProduitController {
     public  void delete (@RequestParam(value = "idProduit") long id) {
         serviceProduit.deleteProduitByID(id);
     }
+
+    @GetMapping("/dernierproduit")
+    public List<Produit> dernierProduit (@RequestParam(value = "idPharmacie")long idPharmacie){
+        return serviceProduit.dernierProduit(idPharmacie);
+    }
+
+    @GetMapping("/listStock")
+    public  List<Stock> listStock(){
+        return serviceProduit.listStock();
+    }
+
+
 }

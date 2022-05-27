@@ -6,7 +6,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Stock")
 public class Stock implements Serializable {
@@ -18,7 +17,7 @@ public class Stock implements Serializable {
 	@GeneratedValue
 	private long idStock;
 	@JsonIgnore
-	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumns(value={ @JoinColumn(name="ProduitID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKStock253621"))
 	private Produit produit;
 

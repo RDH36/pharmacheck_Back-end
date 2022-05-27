@@ -16,11 +16,12 @@ public class ServiceFacture {
     @Autowired
     FactureRepository factureRepository;
 
-    public Facture addFacture(Facture facture){
+    public Facture addFacture (Facture facture){
+
         return factureRepository.save(facture);
     }
 
-    public List<Facture> listFacture() {
-        return  factureRepository.findAll();
+    public List<Facture> listFacture(){
+        return factureRepository.findAll();
     }
 }

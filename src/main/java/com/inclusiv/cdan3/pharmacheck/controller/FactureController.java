@@ -24,8 +24,6 @@ public class FactureController {
     @Autowired
     ServiceFacture serviceFacture;
     @Autowired
-    ServiceProduit serviceProduit;
-    @Autowired
     ServiceUtilisateur serviceUtilisateur;
     @Autowired
     StockRepository stockRepository;
@@ -33,16 +31,13 @@ public class FactureController {
     @PostMapping(path = "/add", consumes = "application/json")
     public Facture addFacture(@RequestBody Facture newFacture, HttpSession session){
         System.out.println(session.getAttribute("MAIL_USER"));
-        Produit produit = serviceProduit.getProduitById(1);
-        Stock stock = stockRepository.getById(1L);
+        Stock stock = stockRepository.getById(2L);
         Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
-        newFacture.getProduit().add(produit);
         newFacture.setUtilisateur(utilisateur);
         stock.getFacture().add(newFacture);
         return  serviceFacture.addFacture(newFacture);
     }
 
-    @JsonIgnore
     @GetMapping("/list")
     public List<Facture> listFacture () {
         return  serviceFacture.listFacture();

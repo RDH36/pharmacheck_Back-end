@@ -35,12 +35,7 @@ public class Utilisateur implements Serializable {
 	
 	@Column(name="MotDepasse", nullable=true, length=255)	
 	private String motDepasse;
-	
-	@OneToMany(mappedBy="utilisateur", targetEntity=Facture.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set facture = new java.util.HashSet();
-	
+
 	private void setIdUtilisateur(long value) {
 		this.idUtilisateur = value;
 	}
@@ -108,15 +103,6 @@ public class Utilisateur implements Serializable {
 	public String getMotDepasse() {
 		return motDepasse;
 	}
-	
-	public void setFacture(java.util.Set value) {
-		this.facture = value;
-	}
-	
-	public java.util.Set getFacture() {
-		return facture;
-	}
-	
 	
 	public String toString() {
 		return String.valueOf(getIdUtilisateur());
