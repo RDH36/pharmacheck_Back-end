@@ -1,6 +1,7 @@
 package com.inclusiv.cdan3.pharmacheck.models;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
@@ -40,7 +41,7 @@ public class Facture implements Serializable {
 	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set produit = new java.util.HashSet();
+	private java.util.Set stock = new java.util.HashSet();
 	
 	private void setIdFacture(long value) {
 		this.idFacture = value;
@@ -93,14 +94,6 @@ public class Facture implements Serializable {
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
-	
-	public void setProduit(java.util.Set value) {
-		this.produit = value;
-	}
-	
-	public java.util.Set getProduit() {
-		return produit;
-	}
 
 
 	public String getValidationCommande() {
@@ -109,6 +102,14 @@ public class Facture implements Serializable {
 
 	public void setValidationCommande(String validationCommande) {
 		this.validationCommande = validationCommande;
+	}
+
+	public Set getStock() {
+		return stock;
+	}
+
+	public void setStock(Set stock) {
+		this.stock = stock;
 	}
 
 	public String toString() {

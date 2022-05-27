@@ -33,11 +33,10 @@ public class FactureController {
     @PostMapping(path = "/add", consumes = "application/json")
     public Facture addFacture(@RequestBody Facture newFacture, HttpSession session){
         System.out.println(session.getAttribute("MAIL_USER"));
-        Produit produit = serviceProduit.getProduitById(1);
         Stock stock = stockRepository.getById(1L);
         Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
-        newFacture.getProduit().add(produit);
         newFacture.setUtilisateur(utilisateur);
+        newFacture.getStock().add(stock);
         stock.getFacture().add(newFacture);
         return  serviceFacture.addFacture(newFacture);
     }
