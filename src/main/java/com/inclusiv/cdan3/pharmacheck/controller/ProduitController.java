@@ -9,6 +9,7 @@ import com.inclusiv.cdan3.pharmacheck.service.ServiceProduit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -36,9 +37,9 @@ public class ProduitController {
 
 
     @PostMapping(path = "/add", consumes = "application/json")
-    public Produit addProduit (@RequestBody Produit newProduit, HttpSession session) {
+    public Produit addProduit (@RequestBody Produit newProduit, HttpServletRequest request) {
         Stock stock = new Stock();
-        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) session.getAttribute("MAIL_PHARMACIE"));
+        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) request.getSession().getAttribute("MAIL_PHARMACIE"));
         stock.setProduit(newProduit);
         stock.setPharmacie(pharmacie);
         newProduit.getStock().add(stock);
