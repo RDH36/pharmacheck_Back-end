@@ -36,14 +36,15 @@ public class FactureController {
         Stock stock = stockRepository.getById(1L);
         Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
         newFacture.setUtilisateur(utilisateur);
-        newFacture.getStock().add(stock);
-        stock.getFacture().add(newFacture);
+        newFacture.setValidationCommande("En attente de validation de commande");
+        newFacture.setStock(stock);
         return  serviceFacture.addFacture(newFacture);
     }
 
     @JsonIgnore
     @GetMapping("/list")
     public List<Facture> listFacture () {
+        System.out.println(serviceFacture.listFacture());
         return  serviceFacture.listFacture();
     }
 }

@@ -31,4 +31,5 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
     @Query(value = "UPDATE stock SET prix_de_vente= :prixDeVente, quantite_disponible=(SELECT quantite_disponible FROM stock  WHERE pharmacieid=:pharmacieid AND produitid=:produitid) + :quantiteCommande WHERE pharmacieid=:pharmacieid AND produitid=:produitid", nativeQuery = true)
     void updateStockFacture (@Param("prixDeVente") double prixVente, @Param("quantiteCommande") int qte, @Param("pharmacieid") long idPharmacie,@Param("produitid") long idProduit);
 
+
 }

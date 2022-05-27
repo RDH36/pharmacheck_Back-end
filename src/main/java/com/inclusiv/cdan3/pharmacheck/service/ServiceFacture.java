@@ -22,6 +22,8 @@ public class ServiceFacture {
     }
 
     public List<Facture> listFacture(){
+
         return factureRepository.findAll();
+
     }
 }

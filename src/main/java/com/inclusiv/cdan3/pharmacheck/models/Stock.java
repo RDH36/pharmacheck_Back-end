@@ -31,12 +31,6 @@ public class Stock implements Serializable {
 	@Column(name="PrixDeVente", nullable=false)
 	private double prixDeVente;
 
-	@ManyToMany(targetEntity=Facture.class)
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
-	@JoinTable(name="Facture_Stock", joinColumns={ @JoinColumn(name="StockID") }, inverseJoinColumns={ @JoinColumn(name="FactureID") })
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
-	private java.util.Set facture = new java.util.HashSet();
-
 	private void setIdStock(long value) {
 		this.idStock = value;
 	}
@@ -81,16 +75,6 @@ public class Stock implements Serializable {
 	public Pharmacie getPharmacie() {
 		return pharmacie;
 	}
-	
-
-	public void setFacture(java.util.Set value) {
-		this.facture = value;
-	}
-	
-	public java.util.Set getFacture() {
-		return facture;
-	}
-	
 	
 	public String toString() {
 		return String.valueOf(getIdStock());

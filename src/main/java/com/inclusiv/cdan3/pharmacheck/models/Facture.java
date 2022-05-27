@@ -38,10 +38,10 @@ public class Facture implements Serializable {
 	private String validationCommande;
 
 
-	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set stock = new java.util.HashSet();
+	@ManyToOne(targetEntity=Stock.class, fetch=FetchType.LAZY)
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+	@JoinColumns(value={ @JoinColumn(name="StockID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKFacture937902"))
+	private Stock stock;
 	
 	private void setIdFacture(long value) {
 		this.idFacture = value;
@@ -104,11 +104,11 @@ public class Facture implements Serializable {
 		this.validationCommande = validationCommande;
 	}
 
-	public Set getStock() {
+	public Stock getStock() {
 		return stock;
 	}
 
-	public void setStock(Set stock) {
+	public void setStock(Stock stock) {
 		this.stock = stock;
 	}
 
