@@ -17,6 +17,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/pharmacie")
 public class PharmacieController {
     @Autowired
