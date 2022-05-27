@@ -45,7 +45,6 @@ public class ServicePharmacie {
         pharmacieRepository.deleteById(id);
     }
 
-
     public Pharmacie getById(Long id_phramacie) {
         return pharmacieRepository.getById(id_phramacie);
     }

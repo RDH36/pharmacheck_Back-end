@@ -1,6 +1,7 @@
 package com.inclusiv.cdan3.pharmacheck.models;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
@@ -36,18 +37,11 @@ public class Facture implements Serializable {
 	@Column(name = "validationCommande", nullable = false, length =50)
 	private String validationCommande;
 
-	public String getValidationCommande() {
-		return validationCommande;
-	}
 
-	public void setValidationCommande(String validationCommande) {
-		this.validationCommande = validationCommande;
-	}
-
-	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set produit = new java.util.HashSet();
+	@ManyToOne(targetEntity=Stock.class, fetch=FetchType.LAZY)
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+	@JoinColumns(value={ @JoinColumn(name="StockID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKFacture937902"))
+	private Stock stock;
 	
 	private void setIdFacture(long value) {
 		this.idFacture = value;
@@ -100,16 +94,24 @@ public class Facture implements Serializable {
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
-	
-	public void setProduit(java.util.Set value) {
-		this.produit = value;
+
+
+	public String getValidationCommande() {
+		return validationCommande;
 	}
-	
-	public java.util.Set getProduit() {
-		return produit;
+
+	public void setValidationCommande(String validationCommande) {
+		this.validationCommande = validationCommande;
 	}
-	
-	
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
 	public String toString() {
 		return String.valueOf(getIdFacture());
 	}

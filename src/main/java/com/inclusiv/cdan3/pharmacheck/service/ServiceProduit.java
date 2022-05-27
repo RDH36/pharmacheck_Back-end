@@ -42,4 +42,8 @@ public class ServiceProduit {
         return produitRepository.listdernierproduit(idPharmacie);
     }
 
+    public  List<Stock> listStock(){
+        return stockRepository.findAll();
+    }
+
 }

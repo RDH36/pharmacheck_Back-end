@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Produit")
 public class Produit implements Serializable {
