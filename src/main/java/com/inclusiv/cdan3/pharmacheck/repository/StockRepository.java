@@ -20,7 +20,12 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
     @Query(value = "SELECT quantite_disponible FROM stock WHERE pharmacieid=:pharmacieid AND produitid=:produitid", nativeQuery = true)
     int getQteStockProduit (@Param("pharmacieid") long idPharmacie,@Param("produitid") long idProduit);
 
+
     List<Stock> findStockByPharmacie_IdPharmacie (@Param("idpharmacie")long idpharmacie);
+
+    @Query(value = "SELECT stock.id, stock.prix_de_vente, stock.quantite_disponible, stock.pharmacieid, stock.produitid, produit.id, produit.classe_pharmaceutique, produit.conditionnement, produit.dci, produit.nom_commercial, produit.presentation FROM stock INNER JOIN produit ON (stock.pharmacieid = :idpharmacie  AND produit.id=stock.produitid)", nativeQuery = true)
+    List<Stock> listestockpharmacie(@Param("idpharmacie")long idpharmacie);
+    //@Query(value = "SELECT  stock.prix_de_vente, stock.quantite_disponible, produit.classe_pharmaceutique, produit.conditionnement, produit.dci, produit.nom_commercial, produit.presentation FROM stock INNER JOIN produit ON (stock.pharmacieid = :idpharmacie  AND produit.id=stock.produitid)", nativeQuery = true)
     @Modifying()
     @Transactional
     @Query(value = "UPDATE stock SET prix_de_vente= :prixDeVente, quantite_disponible=(SELECT quantite_disponible FROM stock  WHERE pharmacieid=:pharmacieid AND produitid=:produitid) + :quantiteCommande WHERE pharmacieid=:pharmacieid AND produitid=:produitid", nativeQuery = true)

@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin("*")
 @RequestMapping("/authpharma")
 public class AuthPharmacieController {
     @Autowired
