@@ -37,10 +37,11 @@ public class ProduitController {
 
 
     @PostMapping(path = "/add", consumes = "application/json")
-    public Produit addProduit (@RequestBody Produit newProduit, HttpServletRequest request) {
+    public Produit addProduit (@RequestBody Produit newProduit,@RequestParam String mail  ,  HttpServletRequest request) {
         Stock stock = new Stock();
-        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail((String) request.getSession().getAttribute("MAIL_PHARMACIE"));
+        Pharmacie pharmacie = servicePharmacie.getUserPharmacieByMail(mail);
         stock.setProduit(newProduit);
+        System.out.println(mail);
         stock.setPharmacie(pharmacie);
         newProduit.getStock().add(stock);
         return  serviceProduit.addProduit(newProduit);
