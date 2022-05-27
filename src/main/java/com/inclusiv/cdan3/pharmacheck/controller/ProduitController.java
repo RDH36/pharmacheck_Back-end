@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/produits")
 public class ProduitController {
     @Autowired
@@ -61,5 +63,6 @@ public class ProduitController {
     public  List<Stock> listStock(){
         return serviceProduit.listStock();
     }
+
 
 }

@@ -1,10 +1,12 @@
 package com.inclusiv.cdan3.pharmacheck.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.inclusiv.cdan3.pharmacheck.models.Facture;
 import com.inclusiv.cdan3.pharmacheck.models.Pharmacie;
 import com.inclusiv.cdan3.pharmacheck.models.Produit;
 import com.inclusiv.cdan3.pharmacheck.models.Stock;
 import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
+import com.inclusiv.cdan3.pharmacheck.service.ServiceFacture;
 import com.inclusiv.cdan3.pharmacheck.service.ServicePharmacie;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceProduit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PharmacieController {
 
     @Autowired
     ServiceProduit serviceProduit;
+
+    @Autowired
+    ServiceFacture serviceFacture;
 
     //Renvoie la liste de toutes les pharmacies eenregistrées
     @GetMapping("/listPharmacie")
@@ -62,5 +67,9 @@ public class PharmacieController {
         return produitList;
     }
 
+    @GetMapping("/listFacture")
+    public  List<Facture> factureList(){
+        return serviceFacture.listFacture();
+    }
 
 }

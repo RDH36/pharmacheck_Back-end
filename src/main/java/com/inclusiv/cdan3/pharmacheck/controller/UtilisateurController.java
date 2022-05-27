@@ -33,9 +33,8 @@ public class UtilisateurController {
     }
 
     @PostMapping("/addfacture")
-    public Facture addFacture(@RequestBody Facture facture){
-
-
+    public Facture addFacture(@RequestBody Facture facture, HttpSession session){
+        facture.setUtilisateur(serviceUtilisateur.getUserByMAIl("MAIL_USER"));
         return serviceFacture.addFacture(facture);
     }
 

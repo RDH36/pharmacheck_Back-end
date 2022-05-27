@@ -7,6 +7,8 @@ import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceFacture {
     @Autowired
@@ -17,5 +19,9 @@ public class ServiceFacture {
     public Facture addFacture (Facture facture){
 
         return factureRepository.save(facture);
+    }
+
+    public List<Facture> listFacture(){
+        return factureRepository.findAll();
     }
 }

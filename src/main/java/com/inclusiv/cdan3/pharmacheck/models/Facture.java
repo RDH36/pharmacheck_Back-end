@@ -36,13 +36,6 @@ public class Facture implements Serializable {
 	@Column(name = "validationCommande", nullable = false, length =50)
 	private String validationCommande;
 
-	public String getValidationCommande() {
-		return validationCommande;
-	}
-
-	public void setValidationCommande(String validationCommande) {
-		this.validationCommande = validationCommande;
-	}
 
 	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -108,8 +101,16 @@ public class Facture implements Serializable {
 	public java.util.Set getProduit() {
 		return produit;
 	}
-	
-	
+
+
+	public String getValidationCommande() {
+		return validationCommande;
+	}
+
+	public void setValidationCommande(String validationCommande) {
+		this.validationCommande = validationCommande;
+	}
+
 	public String toString() {
 		return String.valueOf(getIdFacture());
 	}

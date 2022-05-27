@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="Produit")
 public class Produit implements Serializable {
@@ -33,7 +32,7 @@ public class Produit implements Serializable {
 	@Column(name="ClassePharmaceutique", nullable=true, length=255)	
 	private String classePharmaceutique;
 	@OneToMany(mappedBy="produit", targetEntity=Stock.class, cascade = CascadeType.PERSIST)
-	private java.util.Set<Produit> stock = new java.util.HashSet();
+	private java.util.Set<Stock> stock = new java.util.HashSet();
 
 
 	
