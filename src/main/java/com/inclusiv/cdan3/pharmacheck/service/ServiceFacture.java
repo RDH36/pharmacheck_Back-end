@@ -14,8 +14,7 @@ public class ServiceFacture {
     @Autowired
     FactureRepository factureRepository;
 
-    public Facture facture(Facture facture){
-        Stock stock= new Stock();
+    public Facture addFacture (Facture facture){
 
         return factureRepository.save(facture);
     }

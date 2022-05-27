@@ -37,4 +37,9 @@ public class ServiceProduit {
     public void deleteProduitByID(long id) {
         produitRepository.deleteById(id);
     }
+
+    public List <Produit> dernierProduit(long idPharmacie){
+        return produitRepository.listdernierproduit(idPharmacie);
+    }
+
 }

@@ -32,8 +32,19 @@ public class Facture implements Serializable {
 	
 	@Column(name="MontantFacture", nullable=false)	
 	private double montantFacture;
-	
-	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)	
+
+	@Column(name = "validationCommande", nullable = false, length =50)
+	private String validationCommande;
+
+	public String getValidationCommande() {
+		return validationCommande;
+	}
+
+	public void setValidationCommande(String validationCommande) {
+		this.validationCommande = validationCommande;
+	}
+
+	@ManyToMany(mappedBy="facture", targetEntity=Stock.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set produit = new java.util.HashSet();
