@@ -31,6 +31,9 @@ public class Approvisionnement implements Serializable {
 	
 	@Column(name="QuantiteEntrant", nullable=false, length=10)	
 	private int quantiteEntrant;
+
+	@Column(name="SeuilCritique", nullable=true, length=10)
+	private long seuil;
 	
 	@Column(name="DateDePeremption", nullable=true)	
 	@Temporal(TemporalType.DATE)	
@@ -70,6 +73,14 @@ public class Approvisionnement implements Serializable {
 	
 	public int getQuantiteEntrant() {
 		return quantiteEntrant;
+	}
+
+	public void setSeuil(long value) {
+		this.seuil = value;
+	}
+
+	public long getSeuil() {
+		return seuil;
 	}
 	
 	public void setDateDePeremption(java.util.Date value) {

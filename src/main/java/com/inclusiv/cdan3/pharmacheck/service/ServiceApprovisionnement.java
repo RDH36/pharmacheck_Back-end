@@ -19,6 +19,7 @@ public class ServiceApprovisionnement {
 
     public Approvisionnement addApprovisionement(Approvisionnement appr) {
         Approvisionnement approvisionnement;
+        System.out.println("seuil : "+appr.getSeuil()+"quantité entrant : "+appr.getQuantiteEntrant());
         return  approvisionnementRepository.save(appr);
     }
 }
