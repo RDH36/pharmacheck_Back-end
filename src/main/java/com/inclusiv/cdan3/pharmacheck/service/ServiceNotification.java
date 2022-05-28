@@ -57,7 +57,7 @@ public class ServiceNotification {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
-        mimeMessageHelper.setFrom("email.oio.ids@gmail.com");
+        mimeMessageHelper.setFrom("simplice2236@gmail.com");
         mimeMessageHelper.setTo(toEmail);
         mimeMessageHelper.setText(body);
         mimeMessageHelper.setSubject(subject);
