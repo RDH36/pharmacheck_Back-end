@@ -36,7 +36,6 @@ public class Utilisateur implements Serializable {
 	@Column(name="MotDepasse", nullable=true, length=255)	
 	private String motDepasse;
 
-	
 	private void setIdUtilisateur(long value) {
 		this.idUtilisateur = value;
 	}
