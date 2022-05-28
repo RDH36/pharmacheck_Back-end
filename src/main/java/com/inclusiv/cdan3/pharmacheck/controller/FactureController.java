@@ -6,6 +6,7 @@ import com.inclusiv.cdan3.pharmacheck.models.Facture;
 import com.inclusiv.cdan3.pharmacheck.models.Produit;
 import com.inclusiv.cdan3.pharmacheck.models.Stock;
 import com.inclusiv.cdan3.pharmacheck.models.Utilisateur;
+import com.inclusiv.cdan3.pharmacheck.repository.FactureRepository;
 import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceFacture;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceProduit;
@@ -30,6 +31,9 @@ public class FactureController {
     @Autowired
     StockRepository stockRepository;
 
+    @Autowired
+    FactureRepository factureRepository;
+
     @PostMapping(path = "/add", consumes = "application/json")
     public Facture addFacture(@RequestBody Facture newFacture, HttpSession session){
         System.out.println(session.getAttribute("MAIL_USER"));
@@ -47,4 +51,68 @@ public class FactureController {
         System.out.println(serviceFacture.listFacture());
         return  serviceFacture.listFacture();
     }
+
+    @GetMapping("/listFacturePharmacie")
+    public List<Facture> listFacturePharmacie (@RequestParam("idPharmacie") long idPharmacie){
+        return serviceFacture.listFactureParPharmacie(idPharmacie);
+    }
+
+    //Liste facture en attente
+    @JsonIgnore
+    @GetMapping("/listAttente")
+    public List<Facture> listFactureEnattente (@RequestParam("idPharmacie") long idPharmacie) {
+        return  serviceFacture.listFactureEnAttente(idPharmacie);
+    }
+
+    //Liste facture validée
+    @GetMapping("/listFactureValide")
+    public List<Facture> listFactureValid  (@RequestParam("idPharmacie") long idPharmacie){
+        return serviceFacture.listFactureValideParPharmacie(idPharmacie);
+    }
+
+    //Valider une facture
+    @PutMapping("/valideFacture")
+    public void valideFacture (@RequestParam long idFacture){
+        Facture facture;
+        facture = factureRepository.findFacturesByIdFacture(idFacture);
+        System.out.println(facture);
+        facture.setValidationCommande("Validée");
+        factureRepository.save(facture);
+    }
+
+    //Refuser une commande(facture)
+    @PutMapping("/refusFacture")
+    public void refusFacture (@RequestParam long idFacture){
+        Facture facture;
+        facture = factureRepository.findFacturesByIdFacture(idFacture);
+        System.out.println(facture);
+        facture.setValidationCommande("Refusée");
+        factureRepository.save(facture);
+    }
+
+    //Liste facture impayé
+    @JsonIgnore
+    @GetMapping("/listFactureImpaye")
+    public List<Facture> listFactureImpaye (String paiement) {
+        paiement = "En attente";
+        return  serviceFacture.listFactureParPaiement(paiement);
+    }
+
+    //Liste facture payé
+    @GetMapping("/listFacturePaye")
+    public List<Facture> listFacturePaye (String paiement){
+        paiement = "Payée";
+        return serviceFacture.listFactureParPaiement(paiement);
+    }
+
+    //Validation paiement
+    @PutMapping("/validePaiement")
+    public void validePaiement (@RequestParam long idFacture){
+        Facture facture;
+        facture = factureRepository.findFacturesByIdFacture(idFacture);
+        System.out.println(facture);
+        facture.setEtatPaiement("Payée");
+        factureRepository.save(facture);
+    }
+
 }

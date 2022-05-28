@@ -55,6 +55,7 @@ public class ProduitController {
         serviceProduit.deleteProduitByID(id);
     }
 
+    //Récupère les 4 derniers produits
     @GetMapping("/dernierproduit")
     public List<Produit> dernierProduit (@RequestParam(value = "idPharmacie")long idPharmacie){
         return serviceProduit.dernierProduit(idPharmacie);

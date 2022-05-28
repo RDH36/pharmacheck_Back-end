@@ -34,7 +34,7 @@ public class AdminController {
 
         return servicePharmacie.listPharamacieNonValide();
     }
-    @GetMapping("/listpharmacievalide")
+    @GetMapping("/listPharmacieValide")
     public List<Pharmacie> listpharmacievalide(){
 
         return servicePharmacie.listPharamacieValide();

@@ -1,6 +1,6 @@
 package com.inclusiv.cdan3.pharmacheck.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -16,8 +16,9 @@ public class Stock implements Serializable {
 	@Id
 	@GeneratedValue
 	private long idStock;
-	@JsonIgnore
-	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+	@ManyToOne(targetEntity=Produit.class, fetch=FetchType.LAZY)
 	@JoinColumns(value={ @JoinColumn(name="ProduitID", referencedColumnName="ID", nullable=false) }, foreignKey=@ForeignKey(name="FKStock253621"))
 	private Produit produit;
 

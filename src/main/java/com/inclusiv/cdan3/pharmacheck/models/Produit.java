@@ -1,6 +1,8 @@
 package com.inclusiv.cdan3.pharmacheck.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -31,6 +33,8 @@ public class Produit implements Serializable {
 
 	@Column(name="ClassePharmaceutique", nullable=true, length=255)	
 	private String classePharmaceutique;
+
+	//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 	@OneToMany(mappedBy="produit", targetEntity=Stock.class, cascade = CascadeType.PERSIST)
 	private java.util.Set<Stock> stock = new java.util.HashSet();
 

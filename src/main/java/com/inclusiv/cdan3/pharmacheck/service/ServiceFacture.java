@@ -26,4 +26,20 @@ public class ServiceFacture {
         return factureRepository.findAll();
 
     }
+
+    public  List<Facture> listFactureParPharmacie(long idPharmacie){
+        return factureRepository.listeFactureparPharmacie(idPharmacie);
+    }
+
+    public  List<Facture> listFactureEnAttente(long idPharmacie){
+        return factureRepository.listeFactureEnAttenteParPharmacie(idPharmacie);
+    }
+
+    public  List<Facture> listFactureValideParPharmacie(long idPharmacie){
+        return factureRepository.listeFactureValideParPharmacie(idPharmacie);
+    }
+
+    public List<Facture> listFactureParPaiement(String paiement){
+        return factureRepository.findFacturesByEtatPaiementContainsIgnoreCaseOrderByDateCommandeDesc(paiement);
+    }
 }
