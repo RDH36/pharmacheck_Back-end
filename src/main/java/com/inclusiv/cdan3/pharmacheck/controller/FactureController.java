@@ -2,13 +2,11 @@ package com.inclusiv.cdan3.pharmacheck.controller;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.inclusiv.cdan3.pharmacheck.models.Facture;
-import com.inclusiv.cdan3.pharmacheck.models.Produit;
-import com.inclusiv.cdan3.pharmacheck.models.Stock;
-import com.inclusiv.cdan3.pharmacheck.models.Utilisateur;
+import com.inclusiv.cdan3.pharmacheck.models.*;
 import com.inclusiv.cdan3.pharmacheck.repository.FactureRepository;
 import com.inclusiv.cdan3.pharmacheck.repository.StockRepository;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceFacture;
+import com.inclusiv.cdan3.pharmacheck.service.ServicePharmacie;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceProduit;
 import com.inclusiv.cdan3.pharmacheck.service.ServiceUtilisateur;
 import com.inclusiv.cdan3.pharmacheck.utilitaire.PDFGenerator;
@@ -41,6 +39,10 @@ public class FactureController {
     @Autowired
     FactureRepository factureRepository;
 
+    @Autowired
+    ServicePharmacie servicePharmacie;
+
+
     @PostMapping(path = "/add", consumes = "application/json")
     public Facture addFacture(@RequestBody Facture newFacture,@RequestParam("idstock")long idStock, HttpSession session){
         System.out.println(session.getAttribute("MAIL_USER"));
@@ -60,7 +62,10 @@ public class FactureController {
     }
 
     @GetMapping("/pdf")
-    public void generatePdf(HttpServletResponse response, @RequestParam("title") String title) throws DocumentException, IOException {
+    public void generatePdf(HttpServletResponse response,
+                            @RequestParam("title") String title,
+                            @RequestParam("value") String[] value,
+                            @RequestParam("total") String total) throws DocumentException, IOException {
 
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD:HH:MM:SS");
@@ -68,9 +73,8 @@ public class FactureController {
         String headerkey = "Content-Disposition";
         String headervalue = "attachment; filename=" + title + ".pdf";
         response.setHeader(headerkey, headervalue);
-
         PDFGenerator generator = new PDFGenerator();
-        generator.generate(response, title);
+        generator.generate(response, title, value, total);
     }
 
     @GetMapping("/listFacturePharmacie")

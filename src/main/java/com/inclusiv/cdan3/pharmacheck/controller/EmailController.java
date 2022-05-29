@@ -24,6 +24,6 @@ public class EmailController {
 
     @GetMapping("/sendWithPdf")
     public void sendWithPdf (@RequestParam("adresseMail") String mail, @RequestParam("subject") String subject, @RequestParam("text") String text, @RequestParam("name") String name) throws MessagingException {
-        serviceNotification.sendMailWithAttachement(mail, subject, text, "C:/Users/incli/Downloads/" + name + ".pdf");
+        serviceNotification.sendMailWithAttachement(mail, text, subject, "C:/Users/incli/Downloads/" + name + ".pdf");
     }
 }
