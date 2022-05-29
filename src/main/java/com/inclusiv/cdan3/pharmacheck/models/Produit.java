@@ -3,6 +3,7 @@ package com.inclusiv.cdan3.pharmacheck.models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -31,8 +32,12 @@ public class Produit implements Serializable {
 	@Column(name="Conditionnement", nullable=true, length=255)	
 	private String conditionnement;
 
-	@Column(name="ClassePharmaceutique", nullable=true, length=255)	
+	@Column(name="ClassePharmaceutique", nullable=true, length=255)
 	private String classePharmaceutique;
+
+	@Column(name="LienImage", nullable=true, length=255)
+	private String lienImage;
+
 
 	//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 	@OneToMany(mappedBy="produit", targetEntity=Stock.class, cascade = CascadeType.PERSIST)
@@ -104,5 +109,12 @@ public class Produit implements Serializable {
 	public String toString() {
 		return String.valueOf(getIdProduit());
 	}
-	
+
+	public String getLienImage() {
+		return lienImage;
+	}
+
+	public void setLienImage(String lienImage) {
+		this.lienImage = lienImage;
+	}
 }

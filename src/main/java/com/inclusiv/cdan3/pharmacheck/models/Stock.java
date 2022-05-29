@@ -32,12 +32,23 @@ public class Stock implements Serializable {
 	@Column(name="PrixDeVente", nullable=false)
 	private double prixDeVente;
 
+	@Column(name="seuilMini")
+	private long seuilMini;
+
 	private void setIdStock(long value) {
 		this.idStock = value;
 	}
 
 	public long getIdStock() {
 		return idStock;
+	}
+
+	public long getSeuilMini() {
+		return seuilMini;
+	}
+
+	public void setSeuilMini(int seuilMini) {
+		this.seuilMini = seuilMini;
 	}
 
 	public long getORMID() {

@@ -28,7 +28,7 @@ public class ApprovisionnementController {
         int qteStock = stockRepository.getQteStockProduit(newAppr.getIdPharmacie(), newAppr.getIdProduit());
         System.out.println("\n id "+newAppr.getIdPharmacie()+"\n le seuil est"+newAppr.getSeuil()+"\nentrant"+newAppr.getQuantiteEntrant()+"\nseuil"+newAppr.getSeuil());
         System.out.println(qteStock);
-        stockRepository.updateStock(newAppr.getPrixDeVente(), (newAppr.getQuantiteEntrant() + qteStock), newAppr.getIdPharmacie(), newAppr.getIdProduit());
+        stockRepository.updateStock(newAppr.getPrixDeVente(), (newAppr.getQuantiteEntrant() + qteStock), newAppr.getIdPharmacie(), newAppr.getIdProduit(), newAppr.getSeuil());
         return  serviceApprovisionnement.addApprovisionement(newAppr);
     }
 }
