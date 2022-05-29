@@ -10,6 +10,6 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
     @Query(value = "SELECT id, adresse, email, mot_depasse, nom, prenom, statut_compte, telephonne FROM utilisateur WHERE email = :mail", nativeQuery = true)
     Utilisateur getUserByMail(@Param("mail") String mail);
 
-    @Query(value = "SELECT COUNT(id_utilisateur) FROM public.utilisateur ", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) FROM public.utilisateur ", nativeQuery = true)
     long countUser();
 }

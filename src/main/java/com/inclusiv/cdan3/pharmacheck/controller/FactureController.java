@@ -42,9 +42,9 @@ public class FactureController {
     FactureRepository factureRepository;
 
     @PostMapping(path = "/add", consumes = "application/json")
-    public Facture addFacture(@RequestBody Facture newFacture, HttpSession session){
+    public Facture addFacture(@RequestBody Facture newFacture,@RequestParam("idstock")long idStock, HttpSession session){
         System.out.println(session.getAttribute("MAIL_USER"));
-        Stock stock = stockRepository.getById(2L);
+        Stock stock = stockRepository.getById(idStock);
         Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
         newFacture.setUtilisateur(utilisateur);
         newFacture.setValidationCommande("En attente de validation de commande");
@@ -93,21 +93,21 @@ public class FactureController {
 
     //Valider une facture
     @PutMapping("/valideFacture")
-    public void valideFacture (@RequestParam long idFacture){
+    public void valideFacture (@RequestParam("idFacture") long idFacture){
         Facture facture;
         facture = factureRepository.findFacturesByIdFacture(idFacture);
         System.out.println(facture);
-        facture.setValidationCommande("Validée");
+        facture.setValidationCommande("Valide");
         factureRepository.save(facture);
     }
 
     //Refuser une commande(facture)
     @PutMapping("/refusFacture")
-    public void refusFacture (@RequestParam long idFacture){
+    public void refusFacture (@RequestParam("idFacture") long idFacture){
         Facture facture;
         facture = factureRepository.findFacturesByIdFacture(idFacture);
         System.out.println(facture);
-        facture.setValidationCommande("Refusée");
+        facture.setValidationCommande("Refus");
         factureRepository.save(facture);
     }
 

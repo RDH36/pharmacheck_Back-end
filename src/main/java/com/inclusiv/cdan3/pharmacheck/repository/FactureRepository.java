@@ -22,7 +22,7 @@ public interface FactureRepository extends JpaRepository<Facture, Long> {
 
     //Liste facture valide par pharmacie
     @Query (value = "SELECT facture.id, date_commande, etat_paiement, montant_facture, quantite_produit, validation_commande, stockid, utilisateurid\n" +
-            "\tFROM public.facture INNER JOIN public.stock ON stock.pharmacieid=:idPharmacie AND facture.stockid=stock.id AND validation_commande='%Valide%'", nativeQuery = true)
+            "\tFROM public.facture INNER JOIN public.stock ON stock.pharmacieid=:idPharmacie AND facture.stockid=stock.id AND validation_commande='Valide'", nativeQuery = true)
     List<Facture> listeFactureValideParPharmacie(@Param("idPharmacie")long idPharmacie );
 
 
