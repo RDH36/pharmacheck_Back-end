@@ -33,11 +33,11 @@ public class RechercherController {
     //Recherche produit
     @JsonIgnore
     @GetMapping("/rechercheProduit")
-    public List<List <Produit>> listProduit(@RequestParam(value = "recherche") String recherche){
+    public List<Produit> listProduit(@RequestParam(value = "recherche") String recherche){
         String [] search = recherche.split(" ");
-        List<List<Produit>> produitlist = new ArrayList<>();
+        List<Produit> produitlist = new ArrayList<>();
         for (int i=0; i<search.length; i++){
-            produitlist.add(serviceRecherche.rechercheProduit(search[i]));
+            produitlist = (serviceRecherche.rechercheProduit(search[i]));
         }
         return produitlist;
     }

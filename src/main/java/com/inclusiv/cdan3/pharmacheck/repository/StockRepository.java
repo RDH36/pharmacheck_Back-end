@@ -14,7 +14,7 @@ import java.util.List;
 public interface StockRepository extends JpaRepository<Stock, Long> {
     @Modifying()
     @Transactional
-    @Query(value = "UPDATE stock SET prix_de_vente= :prixDeVente, quantite_disponible=:quantiteDisponible WHERE pharmacieid=:pharmacieid AND produitid=:produitid AND seuil_mini=:seuil", nativeQuery = true)
+    @Query(value = "UPDATE stock SET prix_de_vente= :prixDeVente, quantite_disponible=:quantiteDisponible, seuil_mini=:seuil WHERE pharmacieid=:pharmacieid AND produitid=:produitid", nativeQuery = true)
     void updateStock (@Param("prixDeVente") double prixVente, @Param("quantiteDisponible") int qte, @Param("pharmacieid") long idPharmacie,@Param("produitid") long idProduit, @Param("seuil") long seuil);
 
     @Query(value = "SELECT quantite_disponible FROM stock WHERE pharmacieid=:pharmacieid AND produitid=:produitid", nativeQuery = true)
