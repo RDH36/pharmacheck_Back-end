@@ -16,8 +16,8 @@ public interface FactureRepository extends JpaRepository<Facture, Long> {
     List<Facture> findFacturesByValidationCommandeContainsIgnoreCaseOrderByUtilisateur(String validation);
 
     //Liste facture en attente par pharmacie
-    @Query (value = "SELECT facture.id, date_commande, etat_paiement, montant_facture, quantite_produit, validation_commande, stockid, utilisateurid\n" +
-            "\tFROM public.facture INNER JOIN public.stock ON stock.pharmacieid=:idPharmacie AND facture.stockid=stock.id AND validation_commande='%En attente%'", nativeQuery = true)
+    @Query (value = "SELECT facture.id, facture.date_commande, facture.etat_paiement, facture.montant_facture, facture.quantite_produit, facture.validation_commande, facture.stockid, facture.utilisateurid\n" +
+            "\tFROM public.facture INNER JOIN public.stock ON stock.pharmacieid=:idPharmacie AND facture.stockid=stock.id AND facture.validation_commande='attente'", nativeQuery = true)
     List<Facture> listeFactureEnAttenteParPharmacie(@Param("idPharmacie")long idPharmacie );
 
     //Liste facture valide par pharmacie

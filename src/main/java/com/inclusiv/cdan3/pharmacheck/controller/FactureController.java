@@ -44,12 +44,11 @@ public class FactureController {
 
 
     @PostMapping(path = "/add", consumes = "application/json")
-    public Facture addFacture(@RequestBody Facture newFacture,@RequestParam("idstock")long idStock, HttpSession session){
-        System.out.println(session.getAttribute("MAIL_USER"));
+    public Facture addFacture(@RequestBody Facture newFacture,@RequestParam("idstock")long idStock, @RequestParam("mail") String mail, HttpSession session){
         Stock stock = stockRepository.getById(idStock);
-        Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl((String) session.getAttribute("MAIL_USER"));
+        Utilisateur utilisateur = serviceUtilisateur.getUserByMAIl(mail);
         newFacture.setUtilisateur(utilisateur);
-        newFacture.setValidationCommande("En attente de validation de commande");
+        newFacture.setValidationCommande("attente");
         newFacture.setStock(stock);
         return  serviceFacture.addFacture(newFacture);
     }
